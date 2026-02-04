@@ -637,3 +637,17 @@ p, li{
 }
 
 }
+
+/* ============================= */
+/* 📱 FONDO RESPONSIVE MOVIL */
+/* ============================= */
+
+@media (max-width:768px){
+
+body{
+    background-size: cover;      /* llena toda la pantalla */
+    background-position: center top; /* enfoca mejor arriba */
+    background-attachment: scroll;   /* MUY IMPORTANTE en móvil */
+}
+
+
