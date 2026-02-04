@@ -662,4 +662,15 @@ body{
 }
 
 }
+/* 📱 FONDO AJUSTADO EXACTO A PANTALLA */
+@media (max-width:768px){
 
+body{
+    background-size: contain;   /* ajusta toda la imagen dentro de la pantalla */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-color:#1e3d2b;   /* color verde para rellenar huecos */
+}
+
+}
