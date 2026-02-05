@@ -1002,7 +1002,37 @@ window.addEventListener("keydown",(e)=>{
     }
 
 });
+/* =====================================
+📱 RESET SECRETO MOVIL (SOLO BORJA)
+===================================== */
 
+const tituloPrincipal = document.querySelector("header h1");
+
+let tiempoPresionado;
+
+if(tituloPrincipal){
+
+    tituloPrincipal.addEventListener("touchstart",()=>{
+
+        tiempoPresionado = setTimeout(()=>{
+
+            const clave = prompt("🔐 Clave secreta:");
+
+            if(clave === "borjaBali2026"){ // puedes cambiarla
+                localStorage.removeItem("rolesBali");
+                alert("🌴 Roles reiniciados");
+                location.reload();
+            }
+
+        },3000); // 3 segundos presionado
+
+    });
+
+    tituloPrincipal.addEventListener("touchend",()=>{
+        clearTimeout(tiempoPresionado);
+    });
+
+}
 </script>
 
 
