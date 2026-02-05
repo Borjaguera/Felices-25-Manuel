@@ -1076,6 +1076,129 @@ if(tituloPrincipal){
     });
 
 }
+/* =====================================
+🌀 ROLES PRO 3D — UNICOS Y GUARDADOS
+===================================== */
+
+const botonesRoles = document.querySelectorAll(".btnRol");
+
+const personas = ["Borja","Manuel","Nazaret","Martina"];
+
+const rolesAccion = [
+"📸 Jefe/a de fotos oficiales",
+"🧭 Maestro/a del GPS y rutas",
+"🎉 Animador/a del grupo",
+"🎥 Cámara principal del viaje",
+"🍽️ Buscador/a de sitios épicos",
+"🐢 Protector/a animalista",
+"🧃 Encargado/a de snacks tropicales",
+"🌊 Explorador/a de playas secretas"
+];
+
+function mezclar(array){
+    return array.sort(()=>Math.random()-0.5);
+}
+
+function generarRolesUnicos(){
+
+    const rolesBarajados = mezclar([...rolesAccion]);
+    const asignaciones = {};
+
+    personas.forEach((persona,index)=>{
+        asignaciones[persona] = [
+            rolesBarajados[index*2],
+            rolesBarajados[index*2+1]
+        ];
+    });
+
+    localStorage.setItem("rolesBali",JSON.stringify(asignaciones));
+    return asignaciones;
+}
+
+function obtenerRoles(){
+    const guardados = localStorage.getItem("rolesBali");
+    return guardados ? JSON.parse(guardados) : generarRolesUnicos();
+}
+
+const rolesAsignados = obtenerRoles();
+
+botonesRoles.forEach(boton=>{
+
+    boton.addEventListener("click",()=>{
+
+        const carta = boton.closest(".carta3D");
+        if(carta) carta.classList.add("girada");
+
+        const persona = boton.dataset.persona;
+        const zona = document.getElementById("roles-"+persona);
+
+        if(!zona) return;
+
+        zona.innerHTML="";
+
+        rolesAsignados[persona].forEach((rol,index)=>{
+
+            const div=document.createElement("div");
+            div.classList.add("rolItem");
+            div.textContent=rol;
+
+            zona.appendChild(div);
+
+            setTimeout(()=>{
+                div.classList.add("visible");
+            },index*200);
+        });
+
+    });
+
+});
+
+
+/* =====================================
+🔐 RESET SECRETO (PC + MOVIL)
+===================================== */
+
+const tituloPrincipal = document.querySelector("header h1");
+
+window.addEventListener("keydown",(e)=>{
+
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="b"){
+
+        const clave=prompt("🔐 Clave secreta:");
+
+        if(clave==="borjaBali2026"){
+            localStorage.removeItem("rolesBali");
+            location.reload();
+        }
+    }
+
+});
+
+let tiempoPresionado;
+
+if(tituloPrincipal){
+
+tituloPrincipal.addEventListener("touchstart",()=>{
+
+tiempoPresionado=setTimeout(()=>{
+
+const clave=prompt("🔐 Clave secreta:");
+
+if(clave==="borjaBali2026"){
+localStorage.removeItem("rolesBali");
+location.reload();
+}
+
+},3000);
+
+});
+
+tituloPrincipal.addEventListener("touchend",()=>{
+clearTimeout(tiempoPresionado);
+});
+
+}
+
 </script>
 
 
