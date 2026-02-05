@@ -872,7 +872,7 @@ actualizarContador();
 
 
 /* =====================================
-🎲 RULETA GIGANTE BALI
+🎲 RULETA SORPRESA
 ===================================== */
 
 const botonRuleta = document.getElementById("botonRuleta");
@@ -906,10 +906,12 @@ if(botonRuleta){
 
 
 /* =====================================
-🌀 ROLES INDIVIDUALES (2 POR PERSONA)
+🌀 ROLES PRO — UNICOS + PRIVADOS
 ===================================== */
 
 const botonesRoles = document.querySelectorAll(".btnRol");
+
+const personas = ["Borja","Manuel","Nazaret","Martina"];
 
 const rolesAccion = [
 "📸 Jefe/a de fotos oficiales",
@@ -926,6 +928,30 @@ function mezclar(array){
     return array.sort(()=>Math.random()-0.5);
 }
 
+function generarRolesUnicos(){
+
+    const rolesBarajados = mezclar([...rolesAccion]);
+    const asignaciones = {};
+
+    personas.forEach((persona,index)=>{
+        asignaciones[persona] = [
+            rolesBarajados[index*2],
+            rolesBarajados[index*2+1]
+        ];
+    });
+
+    localStorage.setItem("rolesBali", JSON.stringify(asignaciones));
+    return asignaciones;
+}
+
+function obtenerRoles(){
+
+    const guardados = localStorage.getItem("rolesBali");
+    return guardados ? JSON.parse(guardados) : generarRolesUnicos();
+}
+
+const rolesAsignados = obtenerRoles();
+
 botonesRoles.forEach(boton=>{
 
     boton.addEventListener("click",()=>{
@@ -937,14 +963,11 @@ botonesRoles.forEach(boton=>{
 
         zona.innerHTML = "";
 
-        const rolesMezclados = mezclar([...rolesAccion]);
-        const rolesSeleccionados = rolesMezclados.slice(0,2);
-
-        rolesSeleccionados.forEach((rol,index)=>{
+        rolesAsignados[persona].forEach((rol,index)=>{
 
             const div = document.createElement("div");
             div.classList.add("rolItem");
-            div.innerHTML = rol;
+            div.textContent = rol;
 
             zona.appendChild(div);
 
@@ -958,7 +981,30 @@ botonesRoles.forEach(boton=>{
 
 });
 
+
+/* =====================================
+🔐 RESET PRIVADO SOLO BORJA
+===================================== */
+
+window.addEventListener("keydown",(e)=>{
+
+    // CTRL + SHIFT + B
+    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="b"){
+
+        const clave = prompt("🔐 Clave secreta:");
+
+        if(clave === "borjaBali2026"){ // 👈 cambia esto si quieres
+            localStorage.removeItem("rolesBali");
+            alert("🌴 Roles reiniciados");
+            location.reload();
+        }
+
+    }
+
+});
+
 </script>
+
 
 
 
