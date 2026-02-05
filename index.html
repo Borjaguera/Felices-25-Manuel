@@ -11,6 +11,14 @@
     <header>
         <h1>🌴 Mi Itinerario de Viaje a Bali</h1>
     </header>
+    <!-- 🌀 ROLES BALI CLICK -->
+<section class="roles-bali">
+    <h2>🌀 Roles del equipo en Bali</h2>
+
+    <button id="revelarRoles">🎲 Revelar roles del equipo</button>
+
+    <div id="listaRoles"></div>
+</section>
    <section class="hero-bali">
 
     <h2>🐾 Bali Animalista 2026</h2>
@@ -872,6 +880,56 @@ if(botonRuleta){
         resultadoRuleta.innerHTML = planesSorpresa[random];
 
     });
+}
+    // =============================
+// 🌀 ROLES EQUIPO ACCION BALI
+// =============================
+
+const botonRoles = document.getElementById("revelarRoles");
+const listaRoles = document.getElementById("listaRoles");
+
+const equipo = ["Borja","Manuelina","Nazaret","Martina"];
+
+const rolesAccion = [
+"📸 Jefe/a de fotos oficiales",
+"🧭 Maestro/a del GPS y rutas",
+"🎉 Animador/a del grupo",
+"🎥 Cámara principal del viaje",
+"🍽️ Buscador/a de sitios épicos",
+"🐢 Protector/a animalista",
+"🧃 Encargado/a de snacks tropicales",
+"🌊 Explorador/a de playas secretas"
+];
+
+function mezclar(array){
+    return array.sort(()=>Math.random()-0.5);
+}
+
+if(botonRoles){
+
+    botonRoles.addEventListener("click",()=>{
+
+        listaRoles.innerHTML = "";
+
+        const rolesMezclados = mezclar([...rolesAccion]);
+
+        equipo.forEach((persona,index)=>{
+
+            const div = document.createElement("div");
+            div.classList.add("tarjeta-rol");
+
+            div.innerHTML = "🔥 " + persona + " → " + rolesMezclados[index];
+
+            listaRoles.appendChild(div);
+
+            setTimeout(()=>{
+                div.classList.add("visible");
+            }, index*200);
+
+        });
+
+    });
+
 }
 </script>
 
