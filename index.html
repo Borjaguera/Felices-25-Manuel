@@ -791,6 +791,19 @@ function actualizarContador(){
     }
 
     const dias = Math.floor(diferencia / (1000*60*60*24));
+    const cajaContador = document.querySelector(".contador-vuelo");
+
+// quitar colores anteriores
+cajaContador.classList.remove("contador-verde","contador-naranja","contador-rojo");
+
+// 🎨 cambiar color según días restantes
+if(dias > 30){
+    cajaContador.classList.add("contador-verde");
+}else if(dias <= 30 && dias > 7){
+    cajaContador.classList.add("contador-naranja");
+}else{
+    cajaContador.classList.add("contador-rojo");
+}
     const horas = Math.floor((diferencia % (1000*60*60*24)) / (1000*60*60));
     const minutos = Math.floor((diferencia % (1000*60*60)) / (1000*60));
     const segundos = Math.floor((diferencia % (1000*60)) / 1000);
