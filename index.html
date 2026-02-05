@@ -11,14 +11,41 @@
     <header>
         <h1>🌴 Mi Itinerario de Viaje a Bali</h1>
     </header>
-    <!-- 🌀 ROLES BALI CLICK -->
-<section class="roles-bali">
+ <!-- 🌀 ROLES DEL EQUIPO EN BALI -->
+<section id="roles-equipo" class="roles-bali">
+
     <h2>🌀 Roles del equipo en Bali</h2>
 
-    <button id="revelarRoles">🎲 Revelar roles del equipo</button>
+    <div class="grid-roles">
 
-    <div id="listaRoles"></div>
+        <div class="persona">
+            <h3>🔥 Borja</h3>
+            <button class="btnRol" data-persona="Borja">🎲 Revelar roles</button>
+            <div id="roles-Borja" class="zonaRoles"></div>
+        </div>
+
+        <div class="persona">
+            <h3>🌿 Manuel</h3>
+            <button class="btnRol" data-persona="Manuel">🎲 Revelar roles</button>
+            <div id="roles-Manuel" class="zonaRoles"></div>
+        </div>
+
+        <div class="persona">
+            <h3>🌺 Nazaret</h3>
+            <button class="btnRol" data-persona="Nazaret">🎲 Revelar roles</button>
+            <div id="roles-Nazaret" class="zonaRoles"></div>
+        </div>
+
+        <div class="persona">
+            <h3>🌊 Martina</h3>
+            <button class="btnRol" data-persona="Martina">🎲 Revelar roles</button>
+            <div id="roles-Martina" class="zonaRoles"></div>
+        </div>
+
+    </div>
+
 </section>
+
    <section class="hero-bali">
 
     <h2>🐾 Bali Animalista 2026</h2>
@@ -927,7 +954,58 @@ botonesRoles.forEach(boton=>{
     });
 
 });
+/* =====================================
+🌀 ROLES INDIVIDUALES POR PERSONA
+===================================== */
 
+const botonesRoles = document.querySelectorAll(".btnRol");
+
+const rolesAccion = [
+"📸 Jefe/a de fotos oficiales",
+"🧭 Maestro/a del GPS y rutas",
+"🎉 Animador/a del grupo",
+"🎥 Cámara principal del viaje",
+"🍽️ Buscador/a de sitios épicos",
+"🐢 Protector/a animalista",
+"🧃 Encargado/a de snacks tropicales",
+"🌊 Explorador/a de playas secretas"
+];
+
+function mezclar(array){
+    return array.sort(()=>Math.random()-0.5);
+}
+
+botonesRoles.forEach(boton => {
+
+    boton.addEventListener("click", () => {
+
+        const persona = boton.getAttribute("data-persona");
+        const zona = document.getElementById("roles-" + persona);
+
+        if(!zona) return;
+
+        zona.innerHTML = "";
+
+        const rolesMezclados = mezclar([...rolesAccion]);
+        const rolesSeleccionados = rolesMezclados.slice(0,2);
+
+        rolesSeleccionados.forEach((rol,index)=>{
+
+            const div = document.createElement("div");
+            div.className = "rolItem";
+            div.textContent = rol;
+
+            zona.appendChild(div);
+
+            setTimeout(()=>{
+                div.classList.add("visible");
+            }, index*200);
+
+        });
+
+    });
+
+});
 </script>
 
 
