@@ -1015,4 +1015,31 @@ figcaption a:hover{
     align-items:center; /* 👈 NUEVO */
     gap:8px;
 }
+.carta-back{
+    background:#eaf7ec;
+    transform:rotateY(180deg);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    overflow:hidden; /* 👈 IMPORTANTE */
+}
 
+.zonaRoles{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:80px; /* 👈 ESTO HACE QUE SE VEAN */
+}
+
+.rolItem{
+    background:#ffffff;
+    padding:6px 10px;
+    border-radius:8px;
+    font-weight:700;
+    opacity:1; /* 👈 PARA DESCARTAR ANIMACION OCULTA */
+    transform:none;
+}
