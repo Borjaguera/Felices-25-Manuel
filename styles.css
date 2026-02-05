@@ -875,3 +875,34 @@ figcaption a:hover{
     font-weight:800;
     color:#1b4332;
 }
+/* ============================= */
+/* 🌀 ROLES EQUIPO BALI */
+/* ============================= */
+
+#revelarRoles{
+    margin-top:10px;
+    background:linear-gradient(135deg,#40916c,#2d6a4f);
+    border:none;
+    color:white;
+    padding:10px 20px;
+    border-radius:25px;
+    font-weight:800;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+#revelarRoles:hover{
+    transform:scale(1.07);
+    background:linear-gradient(135deg,#2d6a4f,#1b4332);
+}
+
+.tarjeta-rol{
+    opacity:0;
+    transform:translateY(20px);
+    transition:0.5s ease;
+}
+
+.tarjeta-rol.visible{
+    opacity:1;
+    transform:translateY(0);
+}
