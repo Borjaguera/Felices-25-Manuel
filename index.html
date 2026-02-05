@@ -905,9 +905,6 @@ function actualizarContador(){
         minutos + "m " +
         segundos + "s ✈️";
 
-    contador.classList.remove("contador-animado");
-    void contador.offsetWidth;
-    contador.classList.add("contador-animado");
 }
 
 setInterval(actualizarContador,1000);
@@ -915,7 +912,7 @@ actualizarContador();
 
 
 /* =====================================
-🎲 RULETA SORPRESA
+🎲 RULETA
 ===================================== */
 
 const botonRuleta = document.getElementById("botonRuleta");
@@ -949,135 +946,7 @@ if(botonRuleta){
 
 
 /* =====================================
-🌀 ROLES PRO — UNICOS + PRIVADOS
-===================================== */
-
-const botonesRoles = document.querySelectorAll(".btnRol");
-
-const personas = ["Borja","Manuel","Nazaret","Martina"];
-
-const rolesAccion = [
-"📸 Jefe/a de fotos oficiales",
-"🧭 Maestro/a del GPS y rutas",
-"🎉 Animador/a del grupo",
-"🎥 Cámara principal del viaje",
-"🍽️ Buscador/a de sitios épicos",
-"🐢 Protector/a animalista",
-"🧃 Encargado/a de snacks tropicales",
-"🌊 Explorador/a de playas secretas"
-];
-
-function mezclar(array){
-    return array.sort(()=>Math.random()-0.5);
-}
-
-function generarRolesUnicos(){
-
-    const rolesBarajados = mezclar([...rolesAccion]);
-    const asignaciones = {};
-
-    personas.forEach((persona,index)=>{
-        asignaciones[persona] = [
-            rolesBarajados[index*2],
-            rolesBarajados[index*2+1]
-        ];
-    });
-
-    localStorage.setItem("rolesBali", JSON.stringify(asignaciones));
-    return asignaciones;
-}
-
-function obtenerRoles(){
-
-    const guardados = localStorage.getItem("rolesBali");
-    return guardados ? JSON.parse(guardados) : generarRolesUnicos();
-}
-
-const rolesAsignados = obtenerRoles();
-
-botonesRoles.forEach(boton=>{
-
-    boton.addEventListener("click",()=>{
-
-        const persona = boton.dataset.persona;
-        const zona = document.getElementById("roles-"+persona);
-
-        if(!zona) return;
-
-        zona.innerHTML = "";
-
-        rolesAsignados[persona].forEach((rol,index)=>{
-
-            const div = document.createElement("div");
-            div.classList.add("rolItem");
-            div.textContent = rol;
-
-            zona.appendChild(div);
-
-            setTimeout(()=>{
-                div.classList.add("visible");
-            }, index*200);
-
-        });
-
-    });
-
-});
-
-
-/* =====================================
-🔐 RESET PRIVADO SOLO BORJA
-===================================== */
-
-window.addEventListener("keydown",(e)=>{
-
-    // CTRL + SHIFT + B
-    if(e.ctrlKey && e.shiftKey && e.key.toLowerCase()==="b"){
-
-        const clave = prompt("🔐 Clave secreta:");
-
-        if(clave === "borjaBali2026"){ // 👈 cambia esto si quieres
-            localStorage.removeItem("rolesBali");
-            alert("🌴 Roles reiniciados");
-            location.reload();
-        }
-
-    }
-
-});
-/* =====================================
-📱 RESET SECRETO MOVIL (SOLO BORJA)
-===================================== */
-
-const tituloPrincipal = document.querySelector("header h1");
-
-let tiempoPresionado;
-
-if(tituloPrincipal){
-
-    tituloPrincipal.addEventListener("touchstart",()=>{
-
-        tiempoPresionado = setTimeout(()=>{
-
-            const clave = prompt("🔐 Clave secreta:");
-
-            if(clave === "borjaBali2026"){ // puedes cambiarla
-                localStorage.removeItem("rolesBali");
-                alert("🌴 Roles reiniciados");
-                location.reload();
-            }
-
-        },3000); // 3 segundos presionado
-
-    });
-
-    tituloPrincipal.addEventListener("touchend",()=>{
-        clearTimeout(tiempoPresionado);
-    });
-
-}
-/* =====================================
-🌀 ROLES PRO 3D — UNICOS Y GUARDADOS
+🌀 ROLES 3D UNICOS
 ===================================== */
 
 const botonesRoles = document.querySelectorAll(".btnRol");
@@ -1144,9 +1013,6 @@ botonesRoles.forEach(boton=>{
 
             zona.appendChild(div);
 
-            setTimeout(()=>{
-                div.classList.add("visible");
-            },index*200);
         });
 
     });
@@ -1159,6 +1025,7 @@ botonesRoles.forEach(boton=>{
 ===================================== */
 
 const tituloPrincipal = document.querySelector("header h1");
+let tiempoPresionado;
 
 window.addEventListener("keydown",(e)=>{
 
@@ -1173,8 +1040,6 @@ window.addEventListener("keydown",(e)=>{
     }
 
 });
-
-let tiempoPresionado;
 
 if(tituloPrincipal){
 
