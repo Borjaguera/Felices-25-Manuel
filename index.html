@@ -37,7 +37,11 @@
 <!-- ✈️ CUENTA ATRÁS VUELO -->
 <section class="contador-vuelo">
     <h2>✈️ Cuenta atrás hacia Bali</h2>
+    <div class="zona-contador">
     <p id="contador">Calculando tiempo restante...</p>
+    <span id="avion">✈️</span>
+</div>
+
 </section>
 
 
@@ -804,6 +808,14 @@ if(dias > 30){
 }else{
     cajaContador.classList.add("contador-rojo");
 }
+    const avion = document.getElementById("avion");
+
+// ✈️ mostrar avión solo última semana
+if(dias <= 7){
+    avion.classList.add("avion-activo");
+}else{
+    avion.classList.remove("avion-activo");
+}
     const horas = Math.floor((diferencia % (1000*60*60*24)) / (1000*60*60));
     const minutos = Math.floor((diferencia % (1000*60*60)) / (1000*60));
     const segundos = Math.floor((diferencia % (1000*60)) / 1000);
@@ -813,6 +825,11 @@ if(dias > 30){
         horas + "h " +
         minutos + "m " +
         segundos + "s ✈️";
+
+    // ✨ animación suave cada segundo
+contador.classList.remove("contador-animado");
+void contador.offsetWidth; // reinicia animación
+contador.classList.add("contador-animado");
 }
 
 // actualizar cada segundo
