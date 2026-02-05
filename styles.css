@@ -816,3 +816,31 @@ figcaption a:hover{
 .contador-rojo{
     background:linear-gradient(rgba(127,29,29,0.7),rgba(239,68,68,0.7));
 }
+/* ============================= */
+/* ✈️ AVIÓN VOLANDO */
+/* ============================= */
+
+.zona-contador{
+    position:relative;
+    overflow:hidden;
+}
+
+#avion{
+    position:absolute;
+    left:-60px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:28px;
+    opacity:0;
+}
+
+/* animación vuelo */
+@keyframes volarAvion{
+    0%{ left:-60px; }
+    100%{ left:110%; }
+}
+
+.avion-activo{
+    opacity:1 !important;
+    animation:volarAvion 6s linear infinite;
+}
