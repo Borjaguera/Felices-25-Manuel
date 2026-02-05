@@ -801,3 +801,18 @@ figcaption a:hover{
     font-weight:900;
     letter-spacing:1px;
 }
+/* ============================= */
+/* 🎨 COLORES DINÁMICOS CONTADOR */
+/* ============================= */
+
+.contador-verde{
+    background:linear-gradient(rgba(27,67,50,0.7),rgba(82,183,136,0.7));
+}
+
+.contador-naranja{
+    background:linear-gradient(rgba(120,53,15,0.7),rgba(249,115,22,0.7));
+}
+
+.contador-rojo{
+    background:linear-gradient(rgba(127,29,29,0.7),rgba(239,68,68,0.7));
+}
