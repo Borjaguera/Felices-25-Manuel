@@ -1142,3 +1142,6 @@ figcaption a:hover{
     max-width:900px;      /* 👈 evita que se estire demasiado */
     margin:30px auto;
 }
+*{
+    outline: 1px solid red;
+}
