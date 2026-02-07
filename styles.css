@@ -1,26 +1,26 @@
+/* ===================================================== */
+/* 🌴 FIX DESPLAZAMIENTO GLOBAL */
+/* ===================================================== */
+
+html, body{
+    overflow-x:hidden;
+}
+
 /* ============================= */
 /* 🌴 RESET GENERAL */
 /* ============================= */
-
-html, body{
-    overflow-x:hidden; /* 🔥 FIX DESPLAZAMIENTO */
-}
 
 body{
     margin:0;
     font-family:"Segoe UI", Arial, sans-serif;
     color:#114b2c;
     line-height:1.6;
-    min-height:100dvh;
+    min-height:100vh;
     position:relative;
 }
 
-html{
-    background:#1e3d2b;
-}
-
 /* ============================= */
-/* 🌴 FONDO GLOBAL */
+/* 🌴 FONDO GLOBAL (ARREGLADO) */
 /* ============================= */
 
 body::before{
@@ -99,13 +99,89 @@ nav a:hover{
 }
 
 /* ============================= */
-/* 🌀 TARJETAS 3D ROLES PRO */
+/* 🌿 HERO BALI */
+/* ============================= */
+
+.hero-bali{
+    text-align:center;
+    margin:20px auto 30px;
+    padding:25px;
+    border-radius:20px;
+    background:linear-gradient(rgba(27,67,50,0.65),rgba(64,145,108,0.65));
+    backdrop-filter:blur(8px);
+    color:white;
+    width:80%;
+    box-shadow:0 15px 35px rgba(0,0,0,0.25);
+}
+
+/* ============================= */
+/* 🌴 ARTÍCULOS */
+/* ============================= */
+
+article{
+    background:rgba(226,245,232,0.6);
+    border:1px solid rgba(82,183,136,0.3);
+    border-radius:18px;
+    padding:24px;
+    margin:30px auto;
+    width:85%;
+    box-shadow:0 12px 35px rgba(0,0,0,0.18);
+    transition:0.3s ease;
+}
+
+article:hover{
+    transform:translateY(-6px);
+}
+
+/* ============================= */
+/* 🌴 GALERÍA */
+/* ============================= */
+
+.fotos-lugares{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    margin-top:15px;
+}
+
+figure{
+    margin:0;
+    width:300px;
+    border-radius:20px;
+    overflow:hidden;
+    background:white;
+    box-shadow:0 12px 30px rgba(0,0,0,0.18);
+    transition:0.3s ease;
+}
+
+figure:hover{
+    transform:translateY(-8px);
+}
+
+figure img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+figcaption{
+    padding:10px;
+    font-size:14px;
+    text-align:center;
+    background:#edf7f1;
+    font-style:italic;
+    color:#14532d;
+}
+
+/* ============================= */
+/* 🌀 TARJETAS 3D ROLES PRO — FIX FINAL */
 /* ============================= */
 
 .carta3D{
     perspective:1000px;
     position:relative;
-    overflow:hidden;   /* 🔥 FIX REAL DEL DESPLAZAMIENTO */
+    overflow:hidden; /* 🔥 FIX DESPLAZAMIENTO */
 }
 
 .carta-inner{
@@ -171,6 +247,20 @@ nav a:hover{
     height:420px;
     border:0;
     display:block;
+}
+
+/* ============================= */
+/* 🌿 FOOTER */
+/* ============================= */
+
+footer{
+    text-align:center;
+    padding:35px;
+    margin-top:50px;
+    color:white;
+    background:rgba(0,0,0,0.35);
+    backdrop-filter:blur(6px);
+    border-radius:20px 20px 0 0;
 }
 
 
