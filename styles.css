@@ -920,6 +920,7 @@ figcaption a:hover{
     border-radius:20px;
     background:linear-gradient(rgba(27,67,50,0.7),rgba(82,183,136,0.7));
     color:white;
+    overflow-x:hidden;
 }
 
 .grid-roles{
@@ -1051,7 +1052,7 @@ figcaption a:hover{
 
 .carta3D{
     position:relative;
-    overflow-x:hidden;
+    
 }
 
 .carta3D::after{
