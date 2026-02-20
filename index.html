@@ -1422,7 +1422,7 @@ async function activarMicro(){
             analyser.getByteFrequencyData(data);
             let volumen = data.reduce((a,b)=>a+b)/data.length;
 
-            if(volumen > 70 && !velasApagadas){ // 👈 sensibilidad
+            if(volumen > 60 && !velasApagadas){ // 👈 sensibilidad
                 apagarVelas();
             }
 
