@@ -1526,3 +1526,54 @@ section{
     max-width:1200px !important;
     margin:25px auto !important;
 }
+/* =====================================
+🎂 PANTALLA REGALO MÁS VIVA
+===================================== */
+
+/* Fondo con degradado animado */
+#pantallaRegalo{
+    background: linear-gradient(-45deg, #0e2f24, #1b4332, #2d6a4f, #40916c);
+    background-size: 400% 400%;
+    animation: fondoFiesta 12s ease infinite;
+}
+
+/* Animación del fondo */
+@keyframes fondoFiesta{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Título más grande y brillante */
+.contenido-regalo h1{
+    font-size:38px;
+    background: linear-gradient(90deg, #ffffff, #95d5b2, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: brilloTitulo 3s ease-in-out infinite;
+}
+
+/* Efecto brillo suave */
+@keyframes brilloTitulo{
+    0%{letter-spacing:1px;}
+    50%{letter-spacing:3px;}
+    100%{letter-spacing:1px;}
+}
+
+/* Botón más llamativo */
+#btnEntrar{
+    background: linear-gradient(135deg,#52b788,#74c69d);
+    box-shadow: 0 10px 25px rgba(82,183,136,0.5);
+    transition: 0.3s ease;
+}
+
+#btnEntrar:hover{
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(82,183,136,0.7);
+}
+
+/* Input más limpio */
+#inputClave{
+    background:white;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
