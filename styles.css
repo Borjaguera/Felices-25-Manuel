@@ -1577,3 +1577,85 @@ section{
     background:white;
     box-shadow:0 6px 18px rgba(0,0,0,0.25);
 }
+/* =====================================
+🎉 MODO CUMPLEAÑOS PRO MAX
+===================================== */
+
+/* Fondo animado más vivo */
+#pantallaRegalo{
+    background: linear-gradient(-45deg, #0e2f24, #1b4332, #2d6a4f, #40916c, #52b788);
+    background-size: 400% 400%;
+    animation: fondoFiesta 10s ease infinite;
+}
+
+@keyframes fondoFiesta{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* ✨ TÍTULO MÁGICO */
+.contenido-regalo h1{
+    font-size:40px;
+    background: linear-gradient(90deg, #ffffff, #95d5b2, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: brilloTitulo 3s ease-in-out infinite, latidoTitulo 2.5s ease-in-out infinite;
+    position: relative;
+}
+
+/* Brillo deslizante */
+@keyframes brilloTitulo{
+    0%{filter:brightness(1);}
+    50%{filter:brightness(1.3);}
+    100%{filter:brightness(1);}
+}
+
+/* Latido suave */
+@keyframes latidoTitulo{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.04);}
+    100%{transform:scale(1);}
+}
+
+/* 🎆 PARTÍCULAS FLOTANTES */
+.particula-fiesta{
+    position: fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#95d5b2;
+    pointer-events:none;
+    animation: flotar 6s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes flotar{
+    0%{
+        transform: translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+    10%{opacity:1;}
+    100%{
+        transform: translateY(-10vh) scale(1);
+        opacity:0;
+    }
+}
+
+/* 🎁 BOTÓN MÁS FESTIVO */
+#btnEntrar{
+    background: linear-gradient(135deg,#52b788,#74c69d);
+    box-shadow: 0 10px 25px rgba(82,183,136,0.5);
+    transition: 0.3s ease;
+}
+
+#btnEntrar:hover{
+    transform: scale(1.08);
+    box-shadow: 0 15px 40px rgba(82,183,136,0.8);
+}
+
+/* INPUT MÁS LIMPIO */
+#inputClave{
+    background:white;
+    box-shadow:0 6px 18px rgba(0,0,0,0.25);
+}
