@@ -1659,3 +1659,51 @@ section{
     background:white;
     box-shadow:0 6px 18px rgba(0,0,0,0.25);
 }
+/* =====================================
+🎂 TARTA INTERACTIVA
+===================================== */
+
+.tarta{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:25px 0;
+}
+
+.vela{
+    width:14px;
+    height:40px;
+    background:#ffffff;
+    border-radius:4px;
+    position:relative;
+}
+
+.vela::after{
+    content:"";
+    position:absolute;
+    top:-12px;
+    left:50%;
+    transform:translateX(-50%);
+    width:12px;
+    height:12px;
+    background:radial-gradient(circle, #ffd166 40%, orange 70%);
+    border-radius:50%;
+    animation:flama 0.2s infinite alternate;
+}
+
+/* llama animada */
+@keyframes flama{
+    from{transform:translateX(-50%) scale(1);}
+    to{transform:translateX(-50%) scale(1.2);}
+}
+
+/* vela apagada */
+.apagada::after{
+    display:none;
+}
+
+#mensajeSopla{
+    font-weight:700;
+    margin-top:10px;
+    opacity:0.9;
+}
