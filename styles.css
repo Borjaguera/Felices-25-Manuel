@@ -28,7 +28,7 @@ body::before{
     background-image:url("imagenes-fondo/fondo-bali.avif");
 
     /* 🔥 CLAVE: proporcional sin zoom */
-    background-size:100% 100%;
+    background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
 
@@ -368,7 +368,7 @@ body::before{
     background-image:url("imagenes-fondo/fondo-bali.avif");
 
     /* 🔥 CLAVE: proporcional sin zoom */
-    background-size:100% 100%;
+    background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
 
@@ -676,7 +676,7 @@ figure{
 
 /* 🔥 FONDO PROPORCIONAL MOVIL */
 body::before{
-    background-size:100% 100%;
+    background-size:cover;
 }
 
 }
@@ -705,7 +705,7 @@ body::before{
     height:100%;
 
     background-image:url("imagenes-fondo/fondo-bali.avif");
-    background-size:100% 100%;   /* 👈 proporcional */
+    background-size:cover;  /* 👈 proporcional */
     background-position:center;
     background-repeat:no-repeat;
 
@@ -714,7 +714,7 @@ body::before{
 
 @media (max-width:768px){
     body::before{
-        background-size:100% 100%;
+        background-size:cover;
     }
 }
 
