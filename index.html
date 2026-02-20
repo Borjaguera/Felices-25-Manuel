@@ -1237,6 +1237,38 @@ actualizarProgreso();
 document.querySelectorAll(".checkItem").forEach(c=>{
     c.addEventListener("change", actualizarProgreso);
 });
+    
+    /* =====================================
+🎁 SISTEMA CONTRASEÑA REGALO
+===================================== */
+
+const pantalla = document.getElementById("pantallaRegalo");
+const btnEntrar = document.getElementById("btnEntrar");
+const inputClave = document.getElementById("inputClave");
+const errorClave = document.getElementById("errorClave");
+
+/* 🔑 CAMBIA AQUÍ LA CONTRASEÑA */
+const contraseñaCorrecta = "Bali"; 
+
+btnEntrar.addEventListener("click", ()=>{
+
+    const valor = inputClave.value.toLowerCase().trim();
+
+    if(valor === contraseñaCorrecta){
+
+        pantalla.classList.add("ocultarRegalo");
+
+        setTimeout(()=>{
+            pantalla.style.display = "none";
+        },1000);
+
+    }else{
+
+        errorClave.textContent = "💔 Esa no es la contraseña... piensa un poco más ❤️";
+
+    }
+
+});
 </script>
 </body>
 <footer>
