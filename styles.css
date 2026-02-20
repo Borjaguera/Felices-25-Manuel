@@ -1538,3 +1538,23 @@ input, textarea, select{
         font-size: 16px !important;
     }
 }
+/* 🔒 FORZAR PANTALLA REGALO POR ENCIMA DE TODO */
+
+#pantallaRegalo{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 2147483647 !important; /* máximo posible */
+}
+
+/* Ocultar menú mientras esté bloqueado */
+
+body.bloqueado nav,
+body.bloqueado .menu-movil,
+body.bloqueado .barra-menu,
+body.bloqueado header,
+body.bloqueado footer{
+    display: none !important;
+}
