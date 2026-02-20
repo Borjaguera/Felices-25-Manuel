@@ -1377,8 +1377,8 @@ body.bloqueado{
 
 /* Contenido central */
 .contenido-regalo{
-    max-width:90%;
-    padding:30px;
+    position:relative;
+    z-index:2;
 }
 
 /* Título */
@@ -1447,7 +1447,8 @@ body.bloqueado{
     inset:0;
     background:radial-gradient(circle at center,#52b788,transparent 70%);
     animation:latido 2s infinite;
-    z-index:1;
+    z-index:0;              /* 👈 estaba en 1 */
+    pointer-events:none;    /* 👈 ESTO ES LA CLAVE */
 }
 
 @keyframes latido{
