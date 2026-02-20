@@ -1446,14 +1446,9 @@ body.bloqueado{
     position:absolute;
     inset:0;
 
-    background:
-    radial-gradient(circle at center,
-        rgba(82,183,136,0.25) 0%,
-        rgba(0,0,0,0.6) 60%,
-        rgba(0,0,0,0.85) 100%
-    );
+    background:rgba(0,0,0,0.65); /* 👈 Oscuro uniforme */
 
-    animation:latido 3s infinite;
+    animation:latido 4s infinite;
     z-index:0;
     pointer-events:none;
 }
