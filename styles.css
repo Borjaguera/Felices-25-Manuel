@@ -1451,6 +1451,7 @@ body.bloqueado{
     pointer-events:none;    /* 👈 ESTO ES LA CLAVE */
 }
 
+
 @keyframes latido{
     0%{transform:scale(1);}
     50%{transform:scale(1.05);}
