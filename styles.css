@@ -1475,3 +1475,28 @@ body.bloqueado > *:not(#pantallaRegalo){
         opacity:0;
     }
 }
+/* 🔥 FIX GLOBAL RESPONSIVE */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* 🎴 TARJETAS */
+section,
+.hero-bali,
+.contador-vuelo {
+    width: 92%;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+/* 📱 BARRA APP */
+.barra-app {
+    width: 100%;
+    left: 0;
+}
