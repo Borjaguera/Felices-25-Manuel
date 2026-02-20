@@ -1441,43 +1441,45 @@ body.bloqueado{
         visibility:hidden;
     }
 }
-/* =====================================
-🎆 CONFETI
-===================================== */
-
-#confetiCanvas{
-    position:fixed;
+/* ✨ Portal mágico */
+.portalMagico{
+    position:absolute;
     inset:0;
-    pointer-events:none;
-    z-index:99998;
+    background:radial-gradient(circle at center,#52b788,transparent 70%);
+    animation:latido 2s infinite;
+    z-index:1;
 }
 
-/* =====================================
-✨ EFECTO MAGIA DESBLOQUEO
-===================================== */
-
-.portal-magico{
-    animation:portalAbrir 1s ease forwards;
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
 }
 
-@keyframes portalAbrir{
-    0%{
-        transform:scale(1);
-        filter:blur(0px);
-    }
-    100%{
-        transform:scale(1.2);
-        filter:blur(15px);
+.portalAbrir{
+    animation:abrirPortal 1s forwards;
+}
+
+@keyframes abrirPortal{
+    to{
+        transform:scale(3);
         opacity:0;
     }
 }
 
-/* =====================================
-💌 PISTAS
-===================================== */
+/* 🎆 Confeti */
+.confeti{
+    position:fixed;
+    width:10px;
+    height:10px;
+    top:-10px;
+    animation:caer 3s linear forwards;
+    z-index:999999;
+}
 
-.pista{
-    margin-top:10px;
-    font-size:14px;
-    opacity:0.8;
+@keyframes caer{
+    to{
+        transform:translateY(100vh) rotate(720deg);
+        opacity:0;
+    }
 }
