@@ -9,7 +9,7 @@
 <!-- 🎁 PANTALLA REGALO -->
 
 <div id="pantallaRegalo">
-
+<div class="portalMagico"></div>
     <div class="contenido-regalo">
         <h1>🎂 Feliz Cumpleaños Manuel 🎂</h1>
         <p class="mensaje">
@@ -22,9 +22,16 @@
         <button id="btnEntrar">✨ Descubrir sorpresa</button>
 
         <p id="errorClave"></p>
-    </div>
+        <!-- 🎵 Música -->
+<audio id="musicaRegalo">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b1cfa42f4.mp3?filename=happy-birthday-112199.mp3">
+</audio>
 
-</div>    <!-- TÍTULO PRINCIPAL -->
+<!-- 💌 Pistas -->
+<p id="pistaExtra" style="display:none;"></p>
+    </div>
+</div>   
+    <!-- TÍTULO PRINCIPAL -->
     <header>
         <h1>🌴 Mi Itinerario de Viaje a Bali</h1>
     </header>
@@ -1365,11 +1372,6 @@ btnEntrar.addEventListener("click", ()=>{
 
 });
 </script>
-<!-- 🎵 Música sorpresa -->
-<audio id="musicaRegalo" src="musica.mp3"></audio>
-
-<!-- 🎆 Canvas confeti -->
-<canvas id="confetiCanvas"></canvas>
 </body>
 <footer>
     <p>🌿 Itinerario Animalista por Bali — Diseño de Borja 🐾</p>
