@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<!-- 🎁 PANTALLA REGALO -->
+<body>
 
+<!-- 🎁 PANTALLA REGALO -->
 <div id="pantallaRegalo">
-<div class="portalMagico"></div>
+    <div class="portalMagico"></div>
+
     <div class="contenido-regalo">
         <h1>🎂 Feliz Cumpleaños Manuel 🎂</h1>
         <p class="mensaje">
@@ -23,15 +25,20 @@
         <button id="btnEntrar">✨ Descubrir sorpresa</button>
 
         <p id="errorClave"></p>
-        <!-- 🎵 Música -->
-<audio id="musicaRegalo">
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b1cfa42f4.mp3?filename=happy-birthday-112199.mp3">
-</audio>
 
-<!-- 💌 Pistas -->
-<p id="pistaExtra" style="display:none;"></p>
+        <audio id="musicaRegalo">
+            <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b1cfa42f4.mp3?filename=happy-birthday-112199.mp3">
+        </audio>
+
+        <p id="pistaExtra" style="display:none;"></p>
     </div>
-</div>   
+</div>
+
+
+<!-- 🔒 CONTENIDO OCULTO HASTA CONTRASEÑA -->
+<div id="contenidoWeb" style="display:none;">
+
+    <!-- AQUÍ EMPIEZA TODA TU WEB EXACTAMENTE COMO LA TENÍAS -->
     <!-- TÍTULO PRINCIPAL -->
     <header>
         <h1>🌴 Mi Itinerario de Viaje a Bali</h1>
@@ -870,6 +877,7 @@ referrerpolicy="no-referrer-when-downgrade">
 <a href="#contador">⏳<span>Cuenta atrás</span></a>
 
 </div>
+</div>
 <script>
 
 /* =====================================
@@ -1246,20 +1254,48 @@ document.querySelectorAll(".checkItem").forEach(c=>{
     c.addEventListener("change", actualizarProgreso);
 });
     
+
+
+
 /* =====================================
-🎁 SISTEMA CONTRASEÑA REGALO (FIX TOTAL)
+🎁 SISTEMA REGALO ÚNICO Y LIMPIO
 ===================================== */
 
 document.addEventListener("DOMContentLoaded", function(){
 
     const pantalla = document.getElementById("pantallaRegalo");
+    const portal = document.querySelector(".portalMagico");
+
     const btnEntrar = document.getElementById("btnEntrar");
     const inputClave = document.getElementById("inputClave");
     const errorClave = document.getElementById("errorClave");
+    const pistaExtra = document.getElementById("pistaExtra");
+    const musica = document.getElementById("musicaRegalo");
 
-    const contraseñaCorrecta = "bali"; // 👈 SOLO EN MINÚSCULAS
+    const contraseñaCorrecta = "bali";
+    let intentos = 0;
 
-    if(!btnEntrar) return; // seguridad
+    function lanzarConfeti(){
+        for(let i=0; i<100; i++){
+            const confeti = document.createElement("div");
+            confeti.classList.add("confeti");
+            confeti.style.left = Math.random()*100 + "vw";
+            confeti.style.background = `hsl(${Math.random()*360},100%,50%)`;
+            confeti.style.animationDuration = (Math.random()*2+2) + "s";
+            document.body.appendChild(confeti);
+            setTimeout(()=> confeti.remove(),4000);
+        }
+    }
+
+    function comprobarPistas(){
+        if(intentos === 2){
+            pistaExtra.style.display = "block";
+            pistaExtra.innerHTML = "💡 Pista: Es el destino del viaje...";
+        }
+        if(intentos === 4){
+            pistaExtra.innerHTML = "💡 Pista: Empieza por B y es una isla paradisíaca 🌴";
+        }
+    }
 
     btnEntrar.addEventListener("click", function(){
 
@@ -1267,62 +1303,27 @@ document.addEventListener("DOMContentLoaded", function(){
 
         if(valor === contraseñaCorrecta){
 
-            pantalla.classList.add("ocultarRegalo");
+            musica.play();
+            lanzarConfeti();
+            portal.classList.add("portalAbrir");
 
-            setTimeout(function(){
+            setTimeout(()=>{
                 pantalla.style.display = "none";
             },1000);
 
         } else {
 
-            errorClave.textContent = "💔 Esa no es la contraseña... piensa un poco más ❤️";
+            intentos++;
+            errorClave.textContent = "💔 Esa no es la contraseña...";
             inputClave.value = "";
+            comprobarPistas();
         }
 
     });
 
 });
-/* =====================================
-🎁 SISTEMA REGALO DEFINITIVO
-===================================== */
-
-const pantalla = document.getElementById("pantallaRegalo");
-const portal = document.querySelector(".portalMagico");
-
-const btnEntrar = document.getElementById("btnEntrar");
-const inputClave = document.getElementById("inputClave");
-const errorClave = document.getElementById("errorClave");
-const pistaExtra = document.getElementById("pistaExtra");
-const musica = document.getElementById("musicaRegalo");
-
-const contraseñaCorrecta = "bali"; // 👈 cámbiala si quieres
-let intentos = 0;
 
 
-/* =====================================
-🎆 CONFETI REAL
-===================================== */
-
-function lanzarConfeti(){
-
-    for(let i=0; i<120; i++){
-
-        const confeti = document.createElement("div");
-        confeti.classList.add("confeti");
-
-        confeti.style.left = Math.random()*100 + "vw";
-        confeti.style.background = `hsl(${Math.random()*360},100%,50%)`;
-        confeti.style.animationDuration = (Math.random()*2+2) + "s";
-        confeti.style.width = confeti.style.height = (Math.random()*8+6)+"px";
-
-        document.body.appendChild(confeti);
-
-        setTimeout(()=>{
-            confeti.remove();
-        },4000);
-    }
-
-}
 
 
 /* =====================================
