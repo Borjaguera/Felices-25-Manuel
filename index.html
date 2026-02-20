@@ -1308,8 +1308,9 @@ document.addEventListener("DOMContentLoaded", function(){
             portal.classList.add("portalAbrir");
 
             setTimeout(()=>{
-                pantalla.style.display = "none";
-            },1000);
+    pantalla.style.display = "none";
+    document.getElementById("contenidoWeb").style.display = "block";
+},1000);
 
         } else {
 
