@@ -1519,3 +1519,10 @@ section{
     width: 100%;
     left: 0;
 }
+/* 🔥 FORZAR DIAS ANCHO COMPLETO DEFINITIVO */
+
+#lugares article{
+    width:96% !important;
+    max-width:1200px !important;
+    margin:25px auto !important;
+}
