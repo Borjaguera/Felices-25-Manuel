@@ -1441,3 +1441,43 @@ body.bloqueado{
         visibility:hidden;
     }
 }
+/* =====================================
+🎆 CONFETI
+===================================== */
+
+#confetiCanvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:99998;
+}
+
+/* =====================================
+✨ EFECTO MAGIA DESBLOQUEO
+===================================== */
+
+.portal-magico{
+    animation:portalAbrir 1s ease forwards;
+}
+
+@keyframes portalAbrir{
+    0%{
+        transform:scale(1);
+        filter:blur(0px);
+    }
+    100%{
+        transform:scale(1.2);
+        filter:blur(15px);
+        opacity:0;
+    }
+}
+
+/* =====================================
+💌 PISTAS
+===================================== */
+
+.pista{
+    margin-top:10px;
+    font-size:14px;
+    opacity:0.8;
+}
