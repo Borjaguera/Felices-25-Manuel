@@ -1274,6 +1274,96 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
 });
+/* =====================================
+🎁 SISTEMA REGALO PRO MAX
+===================================== */
+
+const pantalla = document.getElementById("pantallaRegalo");
+document.body.classList.add("bloqueado");
+
+const btnEntrar = document.getElementById("btnEntrar");
+const inputClave = document.getElementById("inputClave");
+const errorClave = document.getElementById("errorClave");
+const musica = document.getElementById("musicaRegalo");
+
+const contraseñaCorrecta = "bali"; // 👈 en minúsculas
+
+let intentos = 0;
+
+/* 🎆 CONFETI */
+
+const canvas = document.getElementById("confetiCanvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particulas = [];
+
+function crearConfeti(){
+    for(let i=0;i<200;i++){
+        particulas.push({
+            x:Math.random()*canvas.width,
+            y:Math.random()*canvas.height- canvas.height,
+            size:Math.random()*6+4,
+            speed:Math.random()*3+2,
+            color:`hsl(${Math.random()*360},100%,50%)`
+        });
+    }
+}
+
+function animarConfeti(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particulas.forEach(p=>{
+        ctx.fillStyle=p.color;
+        ctx.fillRect(p.x,p.y,p.size,p.size);
+        p.y+=p.speed;
+        if(p.y>canvas.height) p.y=0;
+    });
+    requestAnimationFrame(animarConfeti);
+}
+
+/* 💌 PISTAS */
+
+function mostrarPista(){
+    if(intentos===2){
+        errorClave.innerHTML="💡 Pista: Es el destino del viaje...";
+    }
+    if(intentos===4){
+        errorClave.innerHTML="💡 Pista: Empieza por B y es una isla paradisíaca 🌴";
+    }
+}
+
+/* 🔓 BOTÓN */
+
+btnEntrar.addEventListener("click", ()=>{
+
+    const valor = inputClave.value.toLowerCase().trim();
+
+    if(valor === contraseñaCorrecta){
+
+        // 🎵 Música
+        musica.play();
+
+        // 🎆 Confeti
+        crearConfeti();
+        animarConfeti();
+
+        // ✨ Animación mágica
+        pantalla.classList.add("portal-magico");
+
+        setTimeout(()=>{
+            pantalla.style.display="none";
+            document.body.classList.remove("bloqueado");
+        },1000);
+
+    }else{
+        intentos++;
+        errorClave.textContent="💔 Esa no es... piensa un poco más ❤️";
+        mostrarPista();
+    }
+
+});
 </script>
 <!-- 🎵 Música sorpresa -->
 <audio id="musicaRegalo" src="musica.mp3"></audio>
