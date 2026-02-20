@@ -1707,3 +1707,62 @@ section{
     margin-top:10px;
     opacity:0.9;
 }
+/* =====================================
+🎂 FIX VELAS MOVIL DEFINITIVO
+===================================== */
+
+/* Asegura que nada las corte */
+#pantallaRegalo{
+    overflow: visible !important;
+}
+
+/* Tarta visible siempre */
+.tarta{
+    position: relative;
+    display: block;
+    margin: 30px auto 0;
+    z-index: 5;
+}
+
+/* Velas visibles siempre */
+.vela{
+    position: relative;
+    width: 8px;
+    height: 35px;
+    background: #ff4d6d;
+    margin: 0 6px;
+    display: inline-block;
+    border-radius: 4px;
+    z-index: 6;
+}
+
+/* Llama visible */
+.llama{
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 18px;
+    background: radial-gradient(circle, yellow 40%, orange 70%, red 100%);
+    border-radius: 50%;
+    animation: fuego 0.2s infinite alternate;
+    z-index: 7;
+}
+
+/* En móvil las hacemos más grandes */
+@media (max-width:768px){
+
+    .tarta{
+        transform: scale(1.2);
+    }
+
+    .vela{
+        height: 40px;
+    }
+
+    .llama{
+        width: 14px;
+        height: 20px;
+    }
+}
