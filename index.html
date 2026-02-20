@@ -1238,37 +1238,40 @@ document.querySelectorAll(".checkItem").forEach(c=>{
     c.addEventListener("change", actualizarProgreso);
 });
     
-    /* =====================================
-🎁 SISTEMA CONTRASEÑA REGALO
+/* =====================================
+🎁 SISTEMA CONTRASEÑA REGALO (FIX TOTAL)
 ===================================== */
 
-const pantalla = document.getElementById("pantallaRegalo");
-document.body.classList.add("bloqueado");
-const btnEntrar = document.getElementById("btnEntrar");
-const inputClave = document.getElementById("inputClave");
-const errorClave = document.getElementById("errorClave");
+document.addEventListener("DOMContentLoaded", function(){
 
-/* 🔑 CAMBIA AQUÍ LA CONTRASEÑA */
-const contraseñaCorrecta = "Bali"; 
+    const pantalla = document.getElementById("pantallaRegalo");
+    const btnEntrar = document.getElementById("btnEntrar");
+    const inputClave = document.getElementById("inputClave");
+    const errorClave = document.getElementById("errorClave");
 
-btnEntrar.addEventListener("click", ()=>{
+    const contraseñaCorrecta = "bali"; // 👈 SOLO EN MINÚSCULAS
 
-    const valor = inputClave.value.toLowerCase().trim();
+    if(!btnEntrar) return; // seguridad
 
-    if(valor === contraseñaCorrecta.toLowerCase()){
+    btnEntrar.addEventListener("click", function(){
 
-        pantalla.classList.add("ocultarRegalo");
+        const valor = inputClave.value.trim().toLowerCase();
 
-        setTimeout(()=>{
-            pantalla.style.display = "none";
-            document.body.classList.remove("bloqueado");
-        },1000);
+        if(valor === contraseñaCorrecta){
 
-    }else{
+            pantalla.classList.add("ocultarRegalo");
 
-        errorClave.textContent = "💔 Esa no es la contraseña... piensa un poco más ❤️";
+            setTimeout(function(){
+                pantalla.style.display = "none";
+            },1000);
 
-    }
+        } else {
+
+            errorClave.textContent = "💔 Esa no es la contraseña... piensa un poco más ❤️";
+            inputClave.value = "";
+        }
+
+    });
 
 });
 </script>
