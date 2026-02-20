@@ -25,8 +25,13 @@
         <p class="mensaje">
             Tengo algo muy especial preparado para ti…
             <br><br>
-           
+            Pero primero tendrás que adivinar la contraseña 💭
         </p>
+
+        <input type="password" id="inputClave" placeholder="Escribe la contraseña...">
+        <button id="btnEntrar">✨ Descubrir sorpresa</button>
+
+        <p id="errorClave"></p>
 
         <audio id="musicaRegalo">
             <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6b1cfa42f4.mp3?filename=happy-birthday-112199.mp3">
@@ -35,13 +40,8 @@
         <p id="pistaExtra" style="display:none;"></p>
     </div>
 </div>
-<!-- 🎬 TRANSICIÓN CINEMATOGRÁFICA -->
-<div id="cineTransicion">
-    <div class="cine-texto">
-        🌴 FELICES 25 MANUEL 🌴
-        <span>Destino: Bali 2026</span>
-    </div>
-</div>
+
+
 <!-- 🔒 CONTENIDO OCULTO HASTA CONTRASEÑA -->
 <div id="contenidoWeb" style="display:none;">
 
@@ -1262,6 +1262,8 @@ document.querySelectorAll(".checkItem").forEach(c=>{
 });
     
 
+
+
 /* =====================================
 🎁 SISTEMA REGALO ÚNICO Y LIMPIO
 ===================================== */
@@ -1352,21 +1354,8 @@ btnEntrar.addEventListener("click", ()=>{
 
         // 🔓 Desbloquear pantalla
         setTimeout(()=>{
-
-    pantalla.style.display = "none";
-
-    const cine = document.getElementById("cineTransicion");
-    const texto = document.querySelector(".cine-texto");
-
-    cine.classList.add("cineActivo");
-    texto.classList.add("cineMostrar");
-
-    setTimeout(()=>{
-        cine.style.display="none";
-        document.getElementById("contenidoWeb").style.display="block";
-    },2500);
-
-},800);
+            pantalla.style.display = "none";
+        },1000);
 
     }else{
 
@@ -1458,7 +1447,6 @@ function apagarVelas(){
 
 /* Iniciar micro al tocar pantalla (Safari necesita interacción) */
 document.addEventListener("click", activarMicro, { once:true });
-
 </script>
 </body>
 <footer>
