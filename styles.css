@@ -146,14 +146,14 @@ section h2::after{
 /* ============================= */
 /* 🌴 ARTÍCULOS */
 /* ============================= */
-
 article{
     background:rgba(226,245,232,0.6);
     border:1px solid rgba(82,183,136,0.3);
     border-radius:18px;
     padding:24px;
-    margin:30px auto;
-    width:85%;
+    margin:20px auto;
+    width:92%;
+    max-width:900px;
     box-shadow:0 12px 35px rgba(0,0,0,0.18);
     transition:0.3s ease;
 }
@@ -1491,7 +1491,13 @@ html, body {
 }
 
 /* 🎴 TARJETAS */
-section,
+
+section{
+    width: 96%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
 .hero-bali,
 .contador-vuelo {
     width: 92%;
