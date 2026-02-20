@@ -1349,59 +1349,84 @@ body{
     transition:0.4s ease;
 }
 /* ============================= */
-/* 🎁 PANTALLA REGALO FULL PRO */
+/* 🎁 PANTALLA REGALO ESTABLE */
 /* ============================= */
 
+html, body{
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+/* Bloqueo total cuando está activa */
+body.bloqueado{
+    position:fixed;
+    overflow:hidden;
+    width:100%;
+}
+
+/* Oculta absolutamente todo excepto la pantalla regalo */
+body.bloqueado > *:not(#pantallaRegalo){
+    display:none !important;
+}
+
+/* Overlay principal */
 #pantallaRegalo{
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
     width:100%;
     height:100%;
-    min-height:100vh;
 
-    background:linear-gradient(135deg,#0f2f24,#1b4332);
+    background:#0e2f24;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    z-index:999999;
+    z-index:9999999;
+}
+
+/* Contenido centrado */
+.contenido-regalo{
+    width:90%;
+    max-width:420px;
     text-align:center;
+    position:relative;
+    z-index:2;
     color:white;
 }
 
-/* Bloquea scroll detrás */
-body.bloqueado{
-    overflow:hidden;
-}
-
-/* Contenido central */
-.contenido-regalo{
-    position:relative;
-    z-index:2;
+/* Portal oscuro SIN foco */
+.portalMagico{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+    pointer-events:none;
+    z-index:1;
 }
 
 /* Título */
 .contenido-regalo h1{
-    font-size:38px;
+    font-size:32px;
     margin-bottom:20px;
 }
 
 /* Texto */
 .mensaje{
-    font-size:18px;
+    font-size:16px;
     margin-bottom:25px;
     opacity:0.9;
 }
 
-/* Input contraseña */
+/* Input */
 #inputClave{
     width:100%;
     padding:14px;
     border-radius:12px;
     border:none;
     margin-bottom:15px;
-    font-size:16px;
+    font-size:16px; /* 🔥 evita zoom Safari */
     text-align:center;
     outline:none;
 }
@@ -1416,11 +1441,6 @@ body.bloqueado{
     color:white;
     font-weight:800;
     cursor:pointer;
-    transition:0.3s;
-}
-
-#btnEntrar:hover{
-    background:#40916c;
 }
 
 /* Error */
@@ -1432,46 +1452,17 @@ body.bloqueado{
 
 /* Animación salida */
 .ocultarRegalo{
-    animation:desaparecer 1s forwards;
+    animation:fadeOut 0.6s forwards;
 }
 
-@keyframes desaparecer{
+@keyframes fadeOut{
     to{
         opacity:0;
         visibility:hidden;
     }
 }
-/* ✨ Portal mágico */
-.portalMagico{
-    position:absolute;
-    inset:0;
 
-    background:rgba(0,0,0,0.65); /* 👈 Oscuro uniforme */
-
-    animation:latido 4s infinite;
-    z-index:0;
-    pointer-events:none;
-}
-
-
-@keyframes latido{
-    0%{transform:scale(1);}
-    50%{transform:scale(1.05);}
-    100%{transform:scale(1);}
-}
-
-.portalAbrir{
-    animation:abrirPortal 1s forwards;
-}
-
-@keyframes abrirPortal{
-    to{
-        transform:scale(3);
-        opacity:0;
-    }
-}
-
-/* 🎆 Confeti */
+/* Confeti */
 .confeti{
     position:fixed;
     width:10px;
@@ -1486,75 +1477,4 @@ body.bloqueado{
         transform:translateY(100vh) rotate(720deg);
         opacity:0;
     }
-}
-/* 🔥 FIX INTERACCIÓN MOVIL */
-
-#pantallaRegalo{
-    position:fixed;
-    inset:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:999999;
-}
-
-.portalMagico{
-    z-index:0;
-    pointer-events:none; /* 👈 IMPRESCINDIBLE */
-}
-
-.contenido-regalo{
-    position:relative;
-    z-index:10; /* 👈 SUBIMOS EL CONTENIDO */
-}
-html, body{
-    height:100%;
-    margin:0;
-}
-
-body.bloqueado{
-    overflow:hidden;
-    position:fixed;
-    width:100%;
-}
-
-/* Móvil */
-@media (max-width:768px){
-
-    .contenido-regalo{
-        width:85%;
-        padding:20px;
-    }
-
-    #inputClave{
-        font-size:16px; /* evita zoom automático iPhone */
-    }
-}
-input, textarea, select{
-    font-size:16px !important;
-}
-@supports (-webkit-touch-callout: none) {
-    input, textarea {
-        font-size: 16px !important;
-    }
-}
-/* 🔒 FORZAR PANTALLA REGALO POR ENCIMA DE TODO */
-
-#pantallaRegalo{
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-
-    z-index: 2147483647 !important; /* máximo posible */
-}
-
-/* Ocultar menú mientras esté bloqueado */
-
-body.bloqueado nav,
-body.bloqueado .menu-movil,
-body.bloqueado .barra-menu,
-body.bloqueado header,
-body.bloqueado footer{
-    display: none !important;
 }
