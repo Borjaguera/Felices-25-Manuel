@@ -15,6 +15,13 @@
 
     <div class="contenido-regalo">
         <h1>🎂 Feliz Cumpleaños Manuel 🎂</h1>
+        <div class="tarta">
+    <div class="vela"></div>
+    <div class="vela"></div>
+    <div class="vela"></div>
+</div>
+
+<p id="mensajeSopla">¿Qué es lo que harías para pedir un deseo?</p>
         <p class="mensaje">
             Tengo algo muy especial preparado para ti…
             <br><br>
@@ -1388,7 +1395,59 @@ function crearParticulasFiesta(){
     },300);
 }
 
-crearParticulasFiesta();</script>
+crearParticulasFiesta();
+/* =====================================
+🎤 SOPLAR VELAS CON MICRO
+===================================== */
+
+const velas = document.querySelectorAll(".vela");
+const mensajeSopla = document.getElementById("mensajeSopla");
+
+let velasApagadas = false;
+
+async function activarMicro(){
+
+    try{
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const mic = audioContext.createMediaStreamSource(stream);
+        const analyser = audioContext.createAnalyser();
+
+        mic.connect(analyser);
+        analyser.fftSize = 256;
+
+        const data = new Uint8Array(analyser.frequencyBinCount);
+
+        function detectarSoplido(){
+            analyser.getByteFrequencyData(data);
+            let volumen = data.reduce((a,b)=>a+b)/data.length;
+
+            if(volumen > 60 && !velasApagadas){ // 👈 sensibilidad
+                apagarVelas();
+            }
+
+            requestAnimationFrame(detectarSoplido);
+        }
+
+        detectarSoplido();
+
+    }catch(err){
+        mensajeSopla.innerText = "⚠️ Activa el micrófono para soplar";
+    }
+}
+
+function apagarVelas(){
+    velas.forEach(v => v.classList.add("apagada"));
+    velasApagadas = true;
+
+    mensajeSopla.innerText = "🎉 ¡Feliz Cumpleaños Manuel!";
+
+    lanzarConfeti();
+}
+
+/* Iniciar micro al tocar pantalla (Safari necesita interacción) */
+document.addEventListener("click", activarMicro, { once:true });
+</script>
 </body>
 <footer>
     <p>🌿 Itinerario Animalista por Bali — Diseño de Borja 🐾</p>
