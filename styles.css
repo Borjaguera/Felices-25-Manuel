@@ -1485,3 +1485,23 @@ body.bloqueado{
         opacity:0;
     }
 }
+/* 🔥 FIX INTERACCIÓN MOVIL */
+
+#pantallaRegalo{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:999999;
+}
+
+.portalMagico{
+    z-index:0;
+    pointer-events:none; /* 👈 IMPRESCINDIBLE */
+}
+
+.contenido-regalo{
+    position:relative;
+    z-index:10; /* 👈 SUBIMOS EL CONTENIDO */
+}
