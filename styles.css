@@ -1354,12 +1354,12 @@ body{
 
 #pantallaRegalo{
     position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100dvh; /* Altura real móvil */
+    inset:0;
+    width:100%;
+    height:100%;
+    min-height:100vh;
 
-    background:linear-gradient(135deg,#1b4332,#2d6a4f);
+    background:linear-gradient(135deg,#0f2f24,#1b4332);
 
     display:flex;
     justify-content:center;
@@ -1445,10 +1445,17 @@ body.bloqueado{
 .portalMagico{
     position:absolute;
     inset:0;
-    background:radial-gradient(circle at center,#52b788,transparent 70%);
-    animation:latido 2s infinite;
-    z-index:0;              /* 👈 estaba en 1 */
-    pointer-events:none;    /* 👈 ESTO ES LA CLAVE */
+
+    background:
+    radial-gradient(circle at center,
+        rgba(82,183,136,0.25) 0%,
+        rgba(0,0,0,0.6) 60%,
+        rgba(0,0,0,0.85) 100%
+    );
+
+    animation:latido 3s infinite;
+    z-index:0;
+    pointer-events:none;
 }
 
 
@@ -1504,4 +1511,27 @@ body.bloqueado{
 .contenido-regalo{
     position:relative;
     z-index:10; /* 👈 SUBIMOS EL CONTENIDO */
+}
+html, body{
+    height:100%;
+    margin:0;
+}
+
+body.bloqueado{
+    overflow:hidden;
+    position:fixed;
+    width:100%;
+}
+
+/* Móvil */
+@media (max-width:768px){
+
+    .contenido-regalo{
+        width:85%;
+        padding:20px;
+    }
+
+    #inputClave{
+        font-size:16px; /* evita zoom automático iPhone */
+    }
 }
