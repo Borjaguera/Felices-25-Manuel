@@ -1376,6 +1376,14 @@ btnEntrar.addEventListener("click", ()=>{
     }
 
 });
+
+function setRealViewportHeight(){
+    let vh = window.innerHeight;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+}
+
+setRealViewportHeight();
+window.addEventListener('resize', setRealViewportHeight);
 </script>
 </body>
 <footer>
