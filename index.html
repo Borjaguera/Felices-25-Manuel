@@ -40,8 +40,13 @@
         <p id="pistaExtra" style="display:none;"></p>
     </div>
 </div>
-
-
+<!-- 🎬 TRANSICIÓN CINEMATOGRÁFICA -->
+<div id="cineTransicion">
+    <div class="cine-texto">
+        🌴 FELICES 25 MANUEL 🌴
+        <span>Destino: Bali 2026</span>
+    </div>
+</div>
 <!-- 🔒 CONTENIDO OCULTO HASTA CONTRASEÑA -->
 <div id="contenidoWeb" style="display:none;">
 
@@ -1354,8 +1359,21 @@ btnEntrar.addEventListener("click", ()=>{
 
         // 🔓 Desbloquear pantalla
         setTimeout(()=>{
-            pantalla.style.display = "none";
-        },1000);
+
+    pantalla.style.display = "none";
+
+    const cine = document.getElementById("cineTransicion");
+    const texto = document.querySelector(".cine-texto");
+
+    cine.classList.add("cineActivo");
+    texto.classList.add("cineMostrar");
+
+    setTimeout(()=>{
+        cine.style.display="none";
+        document.getElementById("contenidoWeb").style.display="block";
+    },2500);
+
+},800);
 
     }else{
 
