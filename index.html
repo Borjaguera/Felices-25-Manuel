@@ -1367,7 +1367,28 @@ function setRealViewportHeight(){
 
 setRealViewportHeight();
 window.addEventListener('resize', setRealViewportHeight);
-</script>
+
+/* =====================================
+🎆 GENERAR PARTÍCULAS FLOTANTES
+===================================== */
+
+function crearParticulasFiesta(){
+    setInterval(()=>{
+        const p = document.createElement("div");
+        p.classList.add("particula-fiesta");
+
+        p.style.left = Math.random()*100 + "vw";
+        p.style.background = `hsl(${Math.random()*360},100%,70%)`;
+        p.style.animationDuration = (Math.random()*4+4) + "s";
+
+        document.body.appendChild(p);
+
+        setTimeout(()=> p.remove(),8000);
+
+    },300);
+}
+
+crearParticulasFiesta();</script>
 </body>
 <footer>
     <p>🌿 Itinerario Animalista por Bali — Diseño de Borja 🐾</p>
