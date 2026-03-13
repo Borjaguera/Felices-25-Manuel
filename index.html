@@ -1128,7 +1128,7 @@ referrerpolicy="no-referrer-when-downgrade">
   <div id="loginDocumentos">
     <h2>🔒 Acceso a documentos</h2>
     <input type="password" id="passwordDocs" placeholder="Introduce la contraseña">
-    <button id="btnEntrar">Entrar</button>
+    <button id="btnEntrarDocs">Entrar</button>
     <p id="errorPassword"></p>
   </div>
 
@@ -1136,15 +1136,12 @@ referrerpolicy="no-referrer-when-downgrade">
     <h2>📁 Documentos del viaje</h2>
 
     <input type="file" id="fileInput">
-    <button id="btnSubir">Subir documento</button>
+    <button id="btnSubirDocs">Subir documento</button>
 
     <ul id="listaArchivos"></ul>
   </div>
 
 </section>
-
-<!-- IMPORTANTE: el script al final -->
-<script src="docs.js"></script>
         
 <!-- 📱 BARRA APP MOVIL -->
 <div class="barra-app">
@@ -1724,12 +1721,16 @@ const login = document.getElementById("loginDocumentos");
 const zona = document.getElementById("zonaDocumentos");
 const error = document.getElementById("errorPassword");
 
-const btnEntrar = document.getElementById("btnEntrar");
-const btnSubir = document.getElementById("btnSubir");
+const btnEntrarDocs = document.getElementById("btnEntrarDocs");
+const btnSubirDocs = document.getElementById("btnSubirDocs");
 
-btnEntrar.addEventListener("click", verificarPassword);
-btnSubir.addEventListener("click", subirArchivo);
+if(btnEntrarDocs){
+  btnEntrarDocs.addEventListener("click", verificarPassword);
+}
 
+if(btnSubirDocs){
+  btnSubirDocs.addEventListener("click", subirArchivo);
+}
 function verificarPassword(){
 
   const pass = document.getElementById("passwordDocs").value;
