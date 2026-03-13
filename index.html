@@ -84,7 +84,36 @@
 </div>
 
 </section> 
-    
+<section class="info-bali">
+
+<h2>🌴 Información en Bali</h2>
+
+<div class="info-grid">
+
+<div class="info-card">
+<h3>🌤 Clima en Bali</h3>
+<p id="climaBali">Cargando clima...</p>
+</div>
+
+<div class="info-card">
+<h3>🕒 Hora en Bali</h3>
+<p id="horaBali">Cargando hora...</p>
+</div>
+
+<div class="info-card">
+<h3>💰 Conversor € → Rupias</h3>
+
+<input type="number" id="euros" placeholder="Euros">
+
+<button onclick="convertir()">Convertir</button>
+
+<p id="resultadoRupias"></p>
+
+</div>
+
+</div>
+
+</section>
 <section id="mapa-bali">
 
 <h2>🗺️ Mapa del viaje en Bali</h2>
@@ -1873,7 +1902,44 @@ async function cargarArchivos(){
 }
 
 </script>
+<script>
+    async function climaBali(){
 
+const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-8.65&longitude=115.22&current_weather=true");
+
+const data = await res.json();
+
+document.getElementById("climaBali").innerHTML =
+data.current_weather.temperature + "°C 🌡";
+
+}
+
+climaBali();
+
+function horaBali(){
+
+const hora = new Date().toLocaleTimeString("es-ES",{
+timeZone:"Asia/Makassar"
+});
+
+document.getElementById("horaBali").innerHTML = hora;
+
+}
+
+setInterval(horaBali,1000);
+horaBali();
+
+function convertir(){
+
+const euros = document.getElementById("euros").value;
+
+const rupias = euros * 17000;
+
+document.getElementById("resultadoRupias").innerHTML =
+euros + "€ ≈ " + rupias.toLocaleString() + " IDR";
+
+}    
+</script>
 
 </body>
 <footer>
