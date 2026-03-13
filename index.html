@@ -85,13 +85,6 @@
 
 </section> 
     
-<div class="volcan-bali">
-  <div class="volcan">
-    <div id="lava"></div>
-    <div id="humo"></div>
-  </div>
-</div>
-    
 <section id="mapa-bali">
 
 <h2>🗺️ Mapa del viaje en Bali</h2>
@@ -1256,22 +1249,8 @@ function actualizarContador(){
         minutos + "m " +
         segundos + "s ✈️";
     
-    if(dias <= 4){
 
-    const lava = document.getElementById("lava");
-    const humo = document.getElementById("humo");
-
-    if(lava){
-    lava.style.height = "40px";
-    lava.style.background = "orange";
-    }
-
-    if(humo){
-    humo.style.opacity = "1";
-    humo.style.animation = "humoVolcan 2s infinite";
 }
-
-}}
 
 setInterval(actualizarContador,1000);
 actualizarContador();
