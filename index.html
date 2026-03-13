@@ -1141,7 +1141,7 @@ referrerpolicy="no-referrer-when-downgrade">
     <input type="file" id="fileInput">
     <button onclick="subirArchivo()">Subir documento</button>
 
-    <div id="listaArchivos" class="documentos-grid"></div>
+    <div id="listaArchivos"></div>
 
   </div>
 
@@ -1765,9 +1765,8 @@ CARGAR ARCHIVOS
 
 async function cargarArchivos(){
 
-  const lista = document.getElementById("listaArchivos");
-
-  lista.innerHTML = "";
+  const contenedor = document.getElementById("listaArchivos");
+  contenedor.innerHTML = "";
 
   const { data, error } = await supabase.storage
     .from("documentos")
@@ -1778,56 +1777,100 @@ async function cargarArchivos(){
     return;
   }
 
+  const categorias = {
+    pasaportes:[],
+    visas:[],
+    vuelos:[],
+    reservas:[],
+    seguros:[],
+    otros:[]
+  };
+
   data.forEach(file => {
 
-    const { data: urlData } = supabase.storage
-      .from("documentos")
-      .getPublicUrl(file.name);
+    const nombre = file.name.toLowerCase();
 
-    const card = document.createElement("div");
-    card.classList.add("doc-card");
+    if(nombre.includes("pasaporte")) categorias.pasaportes.push(file);
+    else if(nombre.includes("visa")) categorias.visas.push(file);
+    else if(nombre.includes("vuelo") || nombre.includes("billete")) categorias.vuelos.push(file);
+    else if(nombre.includes("hotel") || nombre.includes("villa") || nombre.includes("reserva")) categorias.reservas.push(file);
+    else if(nombre.includes("seguro")) categorias.seguros.push(file);
+    else categorias.otros.push(file);
 
-    let icono="📄";
+  });
 
-    if(file.name.match(/\.(jpg|png|jpeg|webp)$/i)) icono="🖼️";
-    if(file.name.match(/\.(pdf)$/i)) icono="📕";
-    if(file.name.match(/\.(doc|docx)$/i)) icono="📘";
+  const nombresCategorias = {
+    pasaportes:"🛂 Pasaportes",
+    visas:"📄 Visas",
+    vuelos:"✈️ Vuelos",
+    reservas:"🏨 Reservas",
+    seguros:"🩺 Seguro",
+    otros:"📂 Otros documentos"
+  };
 
-    card.innerHTML = `
-      <div class="doc-icon">${icono}</div>
-      <div class="doc-nombre">${file.name.split("_").slice(1).join("_")}</div>
-      <div class="doc-botones">
-        <button class="btn-abrir">Abrir</button>
-        <button class="btn-eliminar">Eliminar</button>
-      </div>
-    `;
+  Object.keys(categorias).forEach(cat => {
 
-    const btnAbrir = card.querySelector(".btn-abrir");
-    const btnEliminar = card.querySelector(".btn-eliminar");
+    if(categorias[cat].length === 0) return;
 
-    btnAbrir.onclick = ()=>{
-      window.open(urlData.publicUrl,"_blank");
-    };
+    const bloque = document.createElement("div");
+    bloque.classList.add("doc-categoria");
 
-    btnEliminar.onclick = async ()=>{
+    const titulo = document.createElement("h3");
+    titulo.textContent = nombresCategorias[cat];
 
-      const confirmar = confirm("¿Eliminar archivo?");
+    const grid = document.createElement("div");
+    grid.classList.add("documentos-grid");
 
-      if(!confirmar) return;
+    categorias[cat].forEach(file => {
 
-      const { error } = await supabase.storage
+      const { data: urlData } = supabase.storage
         .from("documentos")
-        .remove([file.name]);
+        .getPublicUrl(file.name);
 
-      if(error){
-        alert("Error eliminando archivo");
-        return;
-      }
+      const card = document.createElement("div");
+      card.classList.add("doc-card");
 
-      cargarArchivos();
-    };
+      card.innerHTML = `
+        <div class="doc-icon">📄</div>
+        <div class="doc-nombre">${file.name.split("_").slice(1).join("_")}</div>
+        <div class="doc-botones">
+          <button class="btn-abrir">Abrir</button>
+          <button class="btn-eliminar">Eliminar</button>
+        </div>
+      `;
 
-    lista.appendChild(card);
+      const btnAbrir = card.querySelector(".btn-abrir");
+      const btnEliminar = card.querySelector(".btn-eliminar");
+
+      btnAbrir.onclick = ()=>{
+        window.open(urlData.publicUrl,"_blank");
+      };
+
+      btnEliminar.onclick = async ()=>{
+
+        const confirmar = confirm("¿Eliminar archivo?");
+        if(!confirmar) return;
+
+        const { error } = await supabase.storage
+          .from("documentos")
+          .remove([file.name]);
+
+        if(error){
+          alert("Error eliminando archivo");
+          return;
+        }
+
+        cargarArchivos();
+
+      };
+
+      grid.appendChild(card);
+
+    });
+
+    bloque.appendChild(titulo);
+    bloque.appendChild(grid);
+    contenedor.appendChild(bloque);
 
   });
 
