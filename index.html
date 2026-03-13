@@ -1712,9 +1712,8 @@ function apagarVelas(){
 
  /*Iniciar micro al tocar pantalla (Safari necesita interacción) */
 document.addEventListener("click", activarMicro, { once:true });
-document.addEventListener("DOMContentLoaded", function(){/
+document.addEventListener("DOMContentLoaded", function(){
 
-                          
 const PASSWORD = "bali2026";
 
 const login = document.getElementById("loginDocumentos");
@@ -1743,7 +1742,6 @@ if(inputPassword){
 }
 
 function verificarPassword(){
-
   const pass = document.getElementById("passwordDocs").value;
 
   if(pass === PASSWORD){
@@ -1809,6 +1807,9 @@ function mostrarArchivos(){
     lista.appendChild(li);
   }
 }
+
+});
+
 
 </script>
 </body>
