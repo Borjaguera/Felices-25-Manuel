@@ -1766,3 +1766,52 @@ section{
         height: 20px;
     }
 }
+
+.documentos-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.doc-card{
+background:white;
+border-radius:12px;
+padding:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.doc-icon{
+font-size:30px;
+}
+
+.doc-nombre{
+font-weight:bold;
+word-break:break-word;
+}
+
+.doc-botones{
+display:flex;
+justify-content:space-between;
+gap:10px;
+}
+
+.doc-botones button{
+border:none;
+padding:6px 10px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.btn-abrir{
+background:#52b788;
+color:white;
+}
+
+.btn-eliminar{
+background:#ef4444;
+color:white;
+}
