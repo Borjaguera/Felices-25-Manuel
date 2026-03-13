@@ -1743,8 +1743,13 @@ function verificarPassword(){
     error.textContent = "❌ Contraseña incorrecta";
   }
 }
-
-function subirArchivo(){
+document.getElementById("passwordDocs")
+.addEventListener("keydown", function(e){
+   if(e.key === "Enter"){
+      verificarPassword();
+   }
+});
+    function subirArchivo(){
 
   const fileInput = document.getElementById("fileInput");
   const archivo = fileInput.files[0];
