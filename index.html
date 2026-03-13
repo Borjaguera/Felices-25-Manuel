@@ -1122,15 +1122,28 @@ referrerpolicy="no-referrer-when-downgrade">
 
 </div>
 </section>
-<div>
-    <h2>📁 Documentos del viaje</h2>
+        
+<section class="checklist-bali">
+    
+<div id="loginDocumentos">
+<h2>🔒 Acceso a documentos</h2>
+<input type="password" id="passwordDocs" placeholder="Introduce la contraseña">
+<button onclick="verificarPassword()">Entrar</button>
+<p id="errorPassword"></p>
+</div>
+
+<div id="zonaDocumentos" style="display:none;">
+
+<h2>📁 Documentos del viaje</h2>
 
 <input type="file" id="fileInput">
 <button onclick="subirArchivo()">Subir documento</button>
 
 <ul id="listaArchivos"></ul>
-</div>
 
+</div>
+</section>
+        
 <!-- 📱 BARRA APP MOVIL -->
 <div class="barra-app">
 
@@ -1760,6 +1773,25 @@ function mostrarArchivos(){
 }
 
 mostrarArchivos();
+
+    const PASSWORD = "bali2026"; // cambia la contraseña aquí
+
+function verificarPassword(){
+
+    const pass = document.getElementById("passwordDocs").value;
+
+    if(pass === PASSWORD){
+
+        document.getElementById("loginDocumentos").style.display = "none";
+        document.getElementById("zonaDocumentos").style.display = "block";
+
+        mostrarArchivos();
+
+    }else{
+
+        document.getElementById("errorPassword").innerText = "❌ Contraseña incorrecta";
+    }
+}
 </script>
 </body>
 <footer>
