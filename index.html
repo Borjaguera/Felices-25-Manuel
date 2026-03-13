@@ -1714,6 +1714,7 @@ function apagarVelas(){
 
 /* Iniciar micro al tocar pantalla (Safari necesita interacción) */
 document.addEventListener("click", activarMicro, { once:true });
+document.addEventListener("DOMContentLoaded", function(){
 
 const PASSWORD = "bali2026";
 
@@ -1731,6 +1732,17 @@ if(btnEntrarDocs){
 if(btnSubirDocs){
   btnSubirDocs.addEventListener("click", subirArchivo);
 }
+
+const inputPassword = document.getElementById("passwordDocs");
+
+if(inputPassword){
+  inputPassword.addEventListener("keydown", function(e){
+    if(e.key === "Enter"){
+      verificarPassword();
+    }
+  });
+}
+
 function verificarPassword(){
 
   const pass = document.getElementById("passwordDocs").value;
@@ -1743,13 +1755,8 @@ function verificarPassword(){
     error.textContent = "❌ Contraseña incorrecta";
   }
 }
-document.getElementById("passwordDocs")
-.addEventListener("keydown", function(e){
-   if(e.key === "Enter"){
-      verificarPassword();
-   }
-});
-    function subirArchivo(){
+
+function subirArchivo(){
 
   const fileInput = document.getElementById("fileInput");
   const archivo = fileInput.files[0];
@@ -1799,6 +1806,8 @@ function mostrarArchivos(){
     lista.appendChild(li);
   }
 }
+
+});
 </script>
 </body>
 <footer>
