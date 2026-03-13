@@ -1116,8 +1116,13 @@ referrerpolicy="no-referrer-when-downgrade">
 <div class="carta-back">
 <div id="roles-Martina" class="zonaRoles"></div>
 </div>
+    
+<h2>📁 Documentos del viaje</h2>
 
-</div>
+<input type="file" id="fileInput">
+<button onclick="subirArchivo()">Subir documento</button>
+
+<ul id="listaArchivos"></ul></div>
 </div>
 
 </div>
@@ -1135,6 +1140,7 @@ referrerpolicy="no-referrer-when-downgrade">
 
 </div>
 </div>
+
 <script>
 
 /* =====================================
@@ -1692,6 +1698,64 @@ function apagarVelas(){
 
 /* Iniciar micro al tocar pantalla (Safari necesita interacción) */
 document.addEventListener("click", activarMicro, { once:true });
+
+    const fileInput = document.getElementById("fileInput");
+const lista = document.getElementById("listaArchivos");
+
+function subirArchivo(){
+
+    const archivo = fileInput.files[0];
+
+    if(!archivo){
+        alert("Selecciona un archivo");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(){
+
+        const data = reader.result;
+
+        localStorage.setItem(archivo.name, data);
+
+        mostrarArchivos();
+    };
+
+    reader.readAsDataURL(archivo);
+}
+
+function mostrarArchivos(){
+
+    lista.innerHTML = "";
+
+    for(let i=0;i<localStorage.length;i++){
+
+        const key = localStorage.key(i);
+
+        const li = document.createElement("li");
+
+        const link = document.createElement("a");
+        link.href = localStorage.getItem(key);
+        link.textContent = key;
+        link.target = "_blank";
+
+        const botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "❌";
+
+        botonEliminar.onclick = ()=>{
+            localStorage.removeItem(key);
+            mostrarArchivos();
+        };
+
+        li.appendChild(link);
+        li.appendChild(botonEliminar);
+
+        lista.appendChild(li);
+    }
+}
+
+mostrarArchivos();
 </script>
 </body>
 <footer>
