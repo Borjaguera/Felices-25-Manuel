@@ -1156,7 +1156,13 @@ referrerpolicy="no-referrer-when-downgrade">
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = "https://qvtxamqkssfqlwnloztl.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2dHhhbXFrc3NmcWx3bmxvenRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MzAzMTQsImV4cCI6MjA4OTAwNjMxNH0.W9VR0TKiHKv62CqobwoJmTBD7racNAC79B6sj6MKguI";
 
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+</script>
 <script>
 
 /* =====================================
@@ -1677,7 +1683,6 @@ function apagarVelas(){
 
  /*Iniciar micro al tocar pantalla (Safari necesita interacción) */
 // document.addEventListener("click", activarMicro, { once:true });
-
 document.addEventListener("DOMContentLoaded", function(){
 
 const PASSWORD = "bali2026";
@@ -1708,18 +1713,24 @@ if(inputPassword){
 }
 
 function verificarPassword(){
+
   const pass = document.getElementById("passwordDocs").value;
 
   if(pass === PASSWORD){
     login.style.display = "none";
     zona.style.display = "block";
-    mostrarArchivos();
+    cargarArchivos();
   } else {
     error.textContent = "❌ Contraseña incorrecta";
   }
+
 }
 
-function subirArchivo(){
+/* =============================
+SUBIR ARCHIVO A SUPABASE
+============================= */
+
+async function subirArchivo(){
 
   const fileInput = document.getElementById("fileInput");
   const archivo = fileInput.files[0];
@@ -1729,52 +1740,62 @@ function subirArchivo(){
     return;
   }
 
-  const reader = new FileReader();
+  const { error } = await supabase.storage
+    .from("documentos")
+    .upload(Date.now() + "_" + archivo.name, archivo)
 
-  reader.onload = function(){
-    localStorage.setItem("doc_" + archivo.name, reader.result);
-    mostrarArchivos();
-  };
 
-  reader.readAsDataURL(archivo);
+  if(error){
+    alert("Error subiendo archivo");
+    console.log(error);
+    return;
+  }
+
+  cargarArchivos();
 }
 
-function mostrarArchivos(){
+/* =============================
+CARGAR ARCHIVOS
+============================= */
+
+async function cargarArchivos(){
 
   const lista = document.getElementById("listaArchivos");
   lista.innerHTML = "";
 
-  for(let i=0;i<localStorage.length;i++){
+  const { data, error } = await supabase.storage
+    .from("documentos")
+    .list();
 
-    const key = localStorage.key(i);
+  if(error){
+    console.log(error);
+    return;
+  }
 
-    if(!key.startsWith("doc_")) continue;
-
-    const nombreArchivo = key.replace("doc_","");
+  data.forEach(file => {
 
     const li = document.createElement("li");
 
     const link = document.createElement("a");
-    link.href = localStorage.getItem(key);
-    link.textContent = nombreArchivo;
+
+    link.href =
+      supabaseUrl +
+      "/storage/v1/object/public/documentos/" +
+      file.name;
+
+    link.textContent = file.name;
     link.target = "_blank";
 
-    const borrar = document.createElement("button");
-    borrar.textContent = "❌";
-
-    borrar.onclick = ()=>{
-      localStorage.removeItem(key);
-      mostrarArchivos();
-    };
-
     li.appendChild(link);
-    li.appendChild(borrar);
 
     lista.appendChild(li);
-  }
+
+  });
+
 }
 
 });
+
 
 
 </script>
