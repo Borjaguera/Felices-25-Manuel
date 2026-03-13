@@ -1693,30 +1693,52 @@ const error = document.getElementById("errorPassword");
 
 const btnEntrarDocs = document.getElementById("btnEntrarDocs");
 const btnSubirDocs = document.getElementById("btnSubirDocs");
+const passwordInput = document.getElementById("passwordDocs");
 
-btnEntrarDocs.addEventListener("click", verificarPassword);
-btnSubirDocs.addEventListener("click", subirArchivo);
+/* =============================
+LOGIN DOCUMENTOS
+============================= */
 
-document.getElementById("passwordDocs")
-.addEventListener("keydown", function(e){
-  if(e.key === "Enter"){
-    verificarPassword();
-  }
-});
+btnEntrarDocs.onclick = function(){
 
-function verificarPassword(){
-
-  const pass = document.getElementById("passwordDocs").value;
+  const pass = passwordInput.value.trim();
 
   if(pass === PASSWORD){
+
     login.style.display = "none";
     zona.style.display = "block";
+
     cargarArchivos();
+
   }else{
+
     error.textContent = "❌ Contraseña incorrecta";
+
   }
 
-}
+};
+
+/* =============================
+ENTRAR CON ENTER
+============================= */
+
+passwordInput.addEventListener("keypress", function(e){
+
+  if(e.key === "Enter"){
+    btnEntrarDocs.click();
+  }
+
+});
+
+/* =============================
+BOTON SUBIR
+============================= */
+
+btnSubirDocs.addEventListener("click", subirArchivo);
+
+/* =============================
+SUBIR ARCHIVO A SUPABASE
+============================= */
 
 async function subirArchivo(){
 
@@ -1729,8 +1751,8 @@ async function subirArchivo(){
   }
 
   const { error } = await supabase.storage
-  .from("documentos")
-  .upload(Date.now() + "_" + archivo.name, archivo);
+    .from("documentos")
+    .upload(Date.now() + "_" + archivo.name, archivo);
 
   if(error){
     console.log(error);
@@ -1741,14 +1763,23 @@ async function subirArchivo(){
   cargarArchivos();
 }
 
+/* =============================
+CARGAR ARCHIVOS
+============================= */
+
 async function cargarArchivos(){
 
   const lista = document.getElementById("listaArchivos");
   lista.innerHTML = "";
 
-  const { data } = await supabase.storage
-  .from("documentos")
-  .list();
+  const { data, error } = await supabase.storage
+    .from("documentos")
+    .list();
+
+  if(error){
+    console.log(error);
+    return;
+  }
 
   data.forEach(file => {
 
@@ -1771,6 +1802,8 @@ async function cargarArchivos(){
   });
 
 }
+
+});
 
 </script>
 </body>
