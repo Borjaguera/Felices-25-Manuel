@@ -1141,7 +1141,7 @@ referrerpolicy="no-referrer-when-downgrade">
     <input type="file" id="fileInput">
     <button onclick="subirArchivo()">Subir documento</button>
 
-    <ul id="listaArchivos"></ul>
+    <div id="listaArchivos" class="documentos-grid"></div>
 
   </div>
 
@@ -1780,23 +1780,54 @@ async function cargarArchivos(){
 
   data.forEach(file => {
 
-    const li = document.createElement("li");
-
     const { data: urlData } = supabase.storage
       .from("documentos")
       .getPublicUrl(file.name);
 
-    const link = document.createElement("a");
+    const card = document.createElement("div");
+    card.classList.add("doc-card");
 
-    link.href = urlData.publicUrl;
+    let icono="📄";
 
-    link.textContent = file.name;
+    if(file.name.match(/\.(jpg|png|jpeg|webp)$/i)) icono="🖼️";
+    if(file.name.match(/\.(pdf)$/i)) icono="📕";
+    if(file.name.match(/\.(doc|docx)$/i)) icono="📘";
 
-    link.target = "_blank";
+    card.innerHTML = `
+      <div class="doc-icon">${icono}</div>
+      <div class="doc-nombre">${file.name}</div>
+      <div class="doc-botones">
+        <button class="btn-abrir">Abrir</button>
+        <button class="btn-eliminar">Eliminar</button>
+      </div>
+    `;
 
-    li.appendChild(link);
+    const btnAbrir = card.querySelector(".btn-abrir");
+    const btnEliminar = card.querySelector(".btn-eliminar");
 
-    lista.appendChild(li);
+    btnAbrir.onclick = ()=>{
+      window.open(urlData.publicUrl,"_blank");
+    };
+
+    btnEliminar.onclick = async ()=>{
+
+      const confirmar = confirm("¿Eliminar archivo?");
+
+      if(!confirmar) return;
+
+      const { error } = await supabase.storage
+        .from("documentos")
+        .remove([file.name]);
+
+      if(error){
+        alert("Error eliminando archivo");
+        return;
+      }
+
+      cargarArchivos();
+    };
+
+    lista.appendChild(card);
 
   });
 
