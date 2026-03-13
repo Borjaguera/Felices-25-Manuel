@@ -1774,22 +1774,21 @@ async function cargarArchivos(){
     .list();
 
   if(error){
-
     console.log(error);
     return;
-
   }
 
   data.forEach(file => {
 
     const li = document.createElement("li");
 
+    const { data: urlData } = supabase.storage
+      .from("documentos")
+      .getPublicUrl(file.name);
+
     const link = document.createElement("a");
 
-    link.href =
-      supabaseUrl +
-      "/storage/v1/object/public/documentos/" +
-      file.name;
+    link.href = urlData.publicUrl;
 
     link.textContent = file.name;
 
