@@ -1599,8 +1599,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
  /* =====================================
 🔓 BOTÓN ENTRAR
-===================================== 
-btnEntrar.addEventListener("click", ()=>{
+===================================== */
+if(btnEntrar){
+btnEntrar.addEventListener("click", function(){
+
 
     const valor = inputClave.value.toLowerCase().trim();
 
@@ -1629,6 +1631,8 @@ btnEntrar.addEventListener("click", ()=>{
     }
 
 });
+}
+
 
 function setRealViewportHeight(){
     let vh = window.innerHeight;
@@ -1706,10 +1710,10 @@ function apagarVelas(){
     lanzarConfeti();
 }
 
- /*Iniciar micro al tocar pantalla (Safari necesita interacción) 
+ /*Iniciar micro al tocar pantalla (Safari necesita interacción) */
 document.addEventListener("click", activarMicro, { once:true });
 document.addEventListener("DOMContentLoaded", function(){/
-*/
+
                           
 const PASSWORD = "bali2026";
 
@@ -1806,7 +1810,6 @@ function mostrarArchivos(){
   }
 }
 
-});
 </script>
 </body>
 <footer>
