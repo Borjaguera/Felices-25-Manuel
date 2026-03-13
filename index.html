@@ -1155,7 +1155,7 @@ referrerpolicy="no-referrer-when-downgrade">
 <a href="#contador">⏳<span>Cuenta atrás</span></a>
 
 </div>
-</div>
+
 
 <script>
 
@@ -1597,41 +1597,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 });
 
- /* =====================================
-🔓 BOTÓN ENTRAR
-===================================== */
-if(btnEntrar){
-btnEntrar.addEventListener("click", function(){
-
-
-    const valor = inputClave.value.toLowerCase().trim();
-
-    if(valor === contraseñaCorrecta){
-
-        // 🎵 Música
-        musica.play();
-
-        // 🎆 Confeti
-        lanzarConfeti();
-
-        // ✨ Portal se abre
-        portal.classList.add("portalAbrir");
-
-        // 🔓 Desbloquear pantalla
-        setTimeout(()=>{
-            pantalla.style.display = "none";
-        },1000);
-
-    }else{
-
-        intentos++;
-        errorClave.innerHTML = "💔 Esa no es la contraseña... piensa un poco más ❤️";
-        comprobarPistas();
-
-    }
-
-});
-}
 
 
 function setRealViewportHeight(){
