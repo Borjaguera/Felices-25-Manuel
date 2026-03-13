@@ -1140,9 +1140,7 @@ referrerpolicy="no-referrer-when-downgrade">
 
     <input type="file" id="fileInput">
     <button onclick="subirArchivo()">Subir documento</button>
-    <div class="barra-subida">
-    <div id="progresoUpload"></div>
-    </div>
+
     <div id="listaArchivos"></div>
 
   </div>
@@ -1741,33 +1739,20 @@ async function subirArchivo(){
     return;
   }
 
-  const progreso = document.getElementById("progresoUpload");
-
-  progreso.style.width = "10%";
-
-  const nombreArchivo = Date.now() + "_" + archivo.name;
-
   const { error } = await supabase.storage
     .from("documentos")
-    .upload(nombreArchivo, archivo);
+    .upload(Date.now() + "_" + archivo.name, archivo);
 
   if(error){
     console.log(error);
     alert("Error subiendo archivo");
-    progreso.style.width = "0%";
     return;
   }
 
-  progreso.style.width = "100%";
-
-  setTimeout(()=>{
-    progreso.style.width = "0%";
-  },1500);
+  alert("Archivo subido correctamente");
 
   cargarArchivos();
-
 }
-
 
 /* =========================
 CARGAR ARCHIVOS
