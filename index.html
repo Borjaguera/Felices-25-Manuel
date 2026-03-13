@@ -1124,25 +1124,27 @@ referrerpolicy="no-referrer-when-downgrade">
 </section>
         
 <section class="checklist-bali">
-    
-<div id="loginDocumentos">
-<h2>🔒 Acceso a documentos</h2>
-<input type="password" id="passwordDocs" placeholder="Introduce la contraseña">
-<button onclick="verificarPassword()">Entrar</button>
-<p id="errorPassword"></p>
-</div>
 
-<div id="zonaDocumentos" style="display:none;">
+  <div id="loginDocumentos">
+    <h2>🔒 Acceso a documentos</h2>
+    <input type="password" id="passwordDocs" placeholder="Introduce la contraseña">
+    <button id="btnEntrar">Entrar</button>
+    <p id="errorPassword"></p>
+  </div>
 
-<h2>📁 Documentos del viaje</h2>
+  <div id="zonaDocumentos" style="display:none;">
+    <h2>📁 Documentos del viaje</h2>
 
-<input type="file" id="fileInput">
-<button onclick="subirArchivo()">Subir documento</button>
+    <input type="file" id="fileInput">
+    <button id="btnSubir">Subir documento</button>
 
-<ul id="listaArchivos"></ul>
+    <ul id="listaArchivos"></ul>
+  </div>
 
-</div>
 </section>
+
+<!-- IMPORTANTE: el script al final -->
+<script src="docs.js"></script>
         
 <!-- 📱 BARRA APP MOVIL -->
 <div class="barra-app">
@@ -1716,79 +1718,80 @@ function apagarVelas(){
 /* Iniciar micro al tocar pantalla (Safari necesita interacción) */
 document.addEventListener("click", activarMicro, { once:true });
 
-    const PASSWORD = "bali2026";
+const PASSWORD = "bali2026";
+
+const login = document.getElementById("loginDocumentos");
+const zona = document.getElementById("zonaDocumentos");
+const error = document.getElementById("errorPassword");
+
+const btnEntrar = document.getElementById("btnEntrar");
+const btnSubir = document.getElementById("btnSubir");
+
+btnEntrar.addEventListener("click", verificarPassword);
+btnSubir.addEventListener("click", subirArchivo);
 
 function verificarPassword(){
 
-    const pass = document.getElementById("passwordDocs").value;
+  const pass = document.getElementById("passwordDocs").value;
 
-    if(pass === PASSWORD){
-
-        document.getElementById("loginDocumentos").style.display = "none";
-        document.getElementById("zonaDocumentos").style.display = "block";
-
-        mostrarArchivos();
-
-    }else{
-
-        document.getElementById("errorPassword").innerText = "❌ Contraseña incorrecta";
-    }
+  if(pass === PASSWORD){
+    login.style.display = "none";
+    zona.style.display = "block";
+    mostrarArchivos();
+  } else {
+    error.textContent = "❌ Contraseña incorrecta";
+  }
 }
 
 function subirArchivo(){
 
-    const fileInput = document.getElementById("fileInput");
-    const archivo = fileInput.files[0];
+  const fileInput = document.getElementById("fileInput");
+  const archivo = fileInput.files[0];
 
-    if(!archivo){
-        alert("Selecciona un archivo");
-        return;
-    }
+  if(!archivo){
+    alert("Selecciona un archivo");
+    return;
+  }
 
-    const reader = new FileReader();
+  const reader = new FileReader();
 
-    reader.onload = function(){
+  reader.onload = function(){
+    localStorage.setItem(archivo.name, reader.result);
+    mostrarArchivos();
+  };
 
-        const data = reader.result;
-
-        localStorage.setItem(archivo.name, data);
-
-        mostrarArchivos();
-    };
-
-    reader.readAsDataURL(archivo);
+  reader.readAsDataURL(archivo);
 }
 
 function mostrarArchivos(){
 
-    const lista = document.getElementById("listaArchivos");
+  const lista = document.getElementById("listaArchivos");
+  lista.innerHTML = "";
 
-    lista.innerHTML = "";
+  for(let i=0;i<localStorage.length;i++){
 
-    for(let i=0;i<localStorage.length;i++){
+    const key = localStorage.key(i);
 
-        const key = localStorage.key(i);
+    const li = document.createElement("li");
 
-        const li = document.createElement("li");
+    const link = document.createElement("a");
+    link.href = localStorage.getItem(key);
+    link.textContent = key;
+    link.target = "_blank";
 
-        const link = document.createElement("a");
-        link.href = localStorage.getItem(key);
-        link.textContent = key;
-        link.target = "_blank";
+    const borrar = document.createElement("button");
+    borrar.textContent = "❌";
 
-        const botonEliminar = document.createElement("button");
-        botonEliminar.textContent = "❌";
+    borrar.onclick = ()=>{
+      localStorage.removeItem(key);
+      mostrarArchivos();
+    };
 
-        botonEliminar.onclick = ()=>{
-            localStorage.removeItem(key);
-            mostrarArchivos();
-        };
+    li.appendChild(link);
+    li.appendChild(borrar);
 
-        li.appendChild(link);
-        li.appendChild(botonEliminar);
-
-        lista.appendChild(li);
-    }
+    lista.appendChild(li);
+  }
 }
 </script>
 </body>
