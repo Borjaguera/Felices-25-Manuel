@@ -1795,7 +1795,7 @@ async function cargarArchivos(){
 
     card.innerHTML = `
       <div class="doc-icon">${icono}</div>
-      <div class="doc-nombre">${file.name}</div>
+      <div class="doc-nombre">${file.name.split("_").slice(1).join("_")}</div>
       <div class="doc-botones">
         <button class="btn-abrir">Abrir</button>
         <button class="btn-eliminar">Eliminar</button>
