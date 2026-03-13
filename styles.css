@@ -1815,3 +1815,9 @@ color:white;
 background:#ef4444;
 color:white;
 }
+.doc-nombre{
+font-size:14px;
+font-weight:600;
+color:#333;
+word-break:break-word;
+}
