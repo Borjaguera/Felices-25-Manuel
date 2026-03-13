@@ -1769,7 +1769,7 @@ function subirArchivo(){
   const reader = new FileReader();
 
   reader.onload = function(){
-    localStorage.setItem(archivo.name, reader.result);
+    localStorage.setItem("doc_" + archivo.name, reader.result);
     mostrarArchivos();
   };
 
@@ -1785,11 +1785,15 @@ function mostrarArchivos(){
 
     const key = localStorage.key(i);
 
+    if(!key.startsWith("doc_")) continue;
+
+    const nombreArchivo = key.replace("doc_","");
+
     const li = document.createElement("li");
 
     const link = document.createElement("a");
     link.href = localStorage.getItem(key);
-    link.textContent = key;
+    link.textContent = nombreArchivo;
     link.target = "_blank";
 
     const borrar = document.createElement("button");
