@@ -1897,3 +1897,10 @@ color:#1b4332;
 font-size:18px;
 font-weight:600;
 }
+@media (min-width:768px){
+
+.info-grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+}
