@@ -1127,18 +1127,22 @@ referrerpolicy="no-referrer-when-downgrade">
 
   <div id="loginDocumentos">
     <h2>🔒 Acceso a documentos</h2>
+
     <input type="password" id="passwordDocs" placeholder="Introduce la contraseña">
-    <button id="btnEntrarDocs">Entrar</button>
+    <button onclick="verificarPassword()">Entrar</button>
+
     <p id="errorPassword"></p>
   </div>
 
   <div id="zonaDocumentos" style="display:none;">
+
     <h2>📁 Documentos del viaje</h2>
 
     <input type="file" id="fileInput">
-    <button id="btnSubirDocs">Subir documento</button>
+    <button onclick="subirArchivo()">Subir documento</button>
 
     <ul id="listaArchivos"></ul>
+
   </div>
 
 </section>
@@ -1156,15 +1160,8 @@ referrerpolicy="no-referrer-when-downgrade">
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const supabaseUrl = "https://qvtxamqkssfqlwnloztl.supabase.co";
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2dHhhbXFrc3NmcWx3bmxvenRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MzAzMTQsImV4cCI6MjA4OTAwNjMxNH0.W9VR0TKiHKv62CqobwoJmTBD7racNAC79B6sj6MKguI";
 
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-</script>
 <script>
-
 /* =====================================
 🌴 MENU ACTIVO SCROLL
 ===================================== */
@@ -1683,62 +1680,47 @@ function apagarVelas(){
 
  /*Iniciar micro al tocar pantalla (Safari necesita interacción) */
 // document.addEventListener("click", activarMicro, { once:true });
-document.addEventListener("DOMContentLoaded", function(){
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const supabaseUrl = "https://qvtxamqkssfqlwnloztl.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2dHhhbXFrc3NmcWx3bmxvenRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MzAzMTQsImV4cCI6MjA4OTAwNjMxNH0.W9VR0TKiHKv62CqobwoJmTBD7racNAC79B6sj6MKguI";
+
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+</script>
+        
+<script>
 
 const PASSWORD = "bali2026";
 
-const login = document.getElementById("loginDocumentos");
-const zona = document.getElementById("zonaDocumentos");
-const error = document.getElementById("errorPassword");
+/* =========================
+VERIFICAR CONTRASEÑA
+========================= */
 
-const btnEntrarDocs = document.getElementById("btnEntrarDocs");
-const btnSubirDocs = document.getElementById("btnSubirDocs");
-const passwordInput = document.getElementById("passwordDocs");
+function verificarPassword(){
 
-/* =============================
-LOGIN DOCUMENTOS
-============================= */
-
-btnEntrarDocs.onclick = function(){
-
-  const pass = passwordInput.value.trim();
+  const pass = document.getElementById("passwordDocs").value;
 
   if(pass === PASSWORD){
 
-    login.style.display = "none";
-    zona.style.display = "block";
+    document.getElementById("loginDocumentos").style.display = "none";
+    document.getElementById("zonaDocumentos").style.display = "block";
 
     cargarArchivos();
 
   }else{
 
-    error.textContent = "❌ Contraseña incorrecta";
+    document.getElementById("errorPassword").textContent = "❌ Contraseña incorrecta";
 
   }
 
-};
+}
 
-/* =============================
-ENTRAR CON ENTER
-============================= */
 
-passwordInput.addEventListener("keypress", function(e){
-
-  if(e.key === "Enter"){
-    btnEntrarDocs.click();
-  }
-
-});
-
-/* =============================
-BOTON SUBIR
-============================= */
-
-btnSubirDocs.addEventListener("click", subirArchivo);
-
-/* =============================
-SUBIR ARCHIVO A SUPABASE
-============================= */
+/* =========================
+SUBIR ARCHIVO
+========================= */
 
 async function subirArchivo(){
 
@@ -1755,21 +1737,29 @@ async function subirArchivo(){
     .upload(Date.now() + "_" + archivo.name, archivo);
 
   if(error){
+
     console.log(error);
     alert("Error subiendo archivo");
+
     return;
+
   }
 
+  alert("Archivo subido correctamente");
+
   cargarArchivos();
+
 }
 
-/* =============================
+
+/* =========================
 CARGAR ARCHIVOS
-============================= */
+========================= */
 
 async function cargarArchivos(){
 
   const lista = document.getElementById("listaArchivos");
+
   lista.innerHTML = "";
 
   const { data, error } = await supabase.storage
@@ -1777,8 +1767,10 @@ async function cargarArchivos(){
     .list();
 
   if(error){
+
     console.log(error);
     return;
+
   }
 
   data.forEach(file => {
@@ -1793,6 +1785,7 @@ async function cargarArchivos(){
       file.name;
 
     link.textContent = file.name;
+
     link.target = "_blank";
 
     li.appendChild(link);
@@ -1803,9 +1796,9 @@ async function cargarArchivos(){
 
 }
 
-});
-
 </script>
+
+
 </body>
 <footer>
     <p>🌿 Itinerario Animalista por Bali — Diseño de Borja 🐾</p>
