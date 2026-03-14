@@ -2144,7 +2144,22 @@ document.getElementById("resultadoRupias").innerHTML =
 euros + "€ ≈ " + rupias.toLocaleString() + " IDR";
 
 }    
+document.addEventListener("DOMContentLoaded", function(){
 
+const hoy = new Date().getDate();
+const selector = document.getElementById("diaFoto");
+
+if(selector){
+    const valor = "dia" + hoy;
+    const opcion = selector.querySelector(`option[value="${valor}"]`);
+
+    if(opcion){
+        selector.value = valor;
+        cargarFotos();
+    }
+}
+
+});
 </script>
 
 </body>
