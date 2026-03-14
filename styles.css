@@ -2293,3 +2293,49 @@ width:90%;
 }
 
 }
+/* =====================================
+📸 FIX FINAL ALBUM MOVIL
+===================================== */
+
+@media (max-width:768px){
+
+#album-bali{
+background:rgba(255,255,255,0.25) !important;
+backdrop-filter:blur(12px) !important;
+padding:20px !important;
+margin:20px auto !important;
+border-radius:20px !important;
+width:92% !important;
+}
+
+#album-bali select,
+#album-bali input,
+#album-bali button{
+width:90% !important;
+margin:6px auto !important;
+display:block !important;
+}
+
+#album-bali button{
+background:linear-gradient(135deg,#52b788,#2d6a4f) !important;
+color:white !important;
+font-weight:700 !important;
+padding:12px 18px !important;
+border-radius:25px !important;
+}
+
+#galeriaFotos{
+display:grid !important;
+grid-template-columns:1fr 1fr !important;
+gap:12px !important;
+margin-top:20px !important;
+}
+
+#galeriaFotos img{
+width:100% !important;
+height:170px !important;
+object-fit:cover !important;
+border-radius:16px !important;
+}
+
+}
