@@ -2158,129 +2158,103 @@ height:170px;
 
 }
 /* =====================================
-📸 FIX DEFINITIVO ALBUM (SOBRESCRIBE TODO)
+📸 ALBUM BALI FIX TOTAL
 ===================================== */
-
-/* CONTENEDOR ALBUM */
 
 #album-bali{
 
-width:95% !important;
-max-width:1100px !important;
+width:95%;
+max-width:1000px;
 
-margin:30px auto !important;
-padding:25px !important;
+margin:30px auto;
+padding:25px;
 
-background:rgba(255,255,255,0.25) !important;
-backdrop-filter:blur(12px) !important;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(12px);
 
-border-radius:22px !important;
+border-radius:20px;
 
-box-shadow:0 15px 40px rgba(0,0,0,0.35) !important;
-
-border:1px solid rgba(255,255,255,0.35) !important;
+box-shadow:0 10px 30px rgba(0,0,0,0.35);
 
 text-align:center;
 
 }
 
+/* CONTROLES SUPERIORES */
 
-/* BOTONES */
+#album-bali select,
+#album-bali input,
+#album-bali button{
+
+margin:8px;
+padding:10px 14px;
+
+border:none;
+border-radius:20px;
+
+font-size:14px;
+
+box-shadow:0 5px 12px rgba(0,0,0,0.2);
+
+}
+
+/* BOTON */
 
 #album-bali button{
 
-background:linear-gradient(135deg,#52b788,#2d6a4f) !important;
+background:linear-gradient(135deg,#52b788,#2d6a4f);
+color:white;
 
-color:white !important;
+font-weight:700;
+cursor:pointer;
 
-border:none !important;
-
-padding:12px 20px !important;
-
-border-radius:25px !important;
-
-font-weight:700 !important;
-
-cursor:pointer !important;
-
-box-shadow:0 8px 20px rgba(0,0,0,0.25) !important;
-
-transition:0.25s !important;
+transition:0.25s;
 
 }
 
 #album-bali button:hover{
 
-transform:scale(1.05) !important;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.35) !important;
+transform:scale(1.05);
 
 }
-
-
-/* SELECT Y INPUT */
-
-#album-bali select,
-#album-bali input[type="file"]{
-
-background:white !important;
-
-border:none !important;
-
-padding:10px 14px !important;
-
-border-radius:20px !important;
-
-font-size:14px !important;
-
-box-shadow:0 5px 12px rgba(0,0,0,0.2) !important;
-
-}
-
 
 /* GALERIA */
 
 #galeriaFotos{
 
-display:grid !important;
+display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 
-gap:18px !important;
+gap:18px;
 
-margin-top:25px !important;
-
-justify-items:center !important;
+margin-top:25px;
 
 }
-
 
 /* FOTOS */
 
 #galeriaFotos img{
 
-width:100% !important;
+width:100%;
 
-max-width:260px !important;
+height:200px;
 
-height:200px !important;
+object-fit:cover;
 
-object-fit:cover !important;
+border-radius:16px;
 
-border-radius:18px !important;
+box-shadow:0 12px 30px rgba(0,0,0,0.35);
 
-box-shadow:0 12px 30px rgba(0,0,0,0.35) !important;
-
-transition:0.3s !important;
+transition:0.3s;
 
 }
 
 #galeriaFotos img:hover{
 
-transform:scale(1.05) !important;
+transform:scale(1.05);
 
 }
-
 
 /* =====================================
 📱 MOVIL
@@ -2290,31 +2264,30 @@ transform:scale(1.05) !important;
 
 #album-bali{
 
-width:94% !important;
-
-padding:20px !important;
+width:92%;
+padding:20px;
 
 }
 
 #galeriaFotos{
 
-grid-template-columns:1fr 1fr !important;
+grid-template-columns:1fr 1fr;
 
-gap:12px !important;
+gap:12px;
 
 }
 
 #galeriaFotos img{
 
-height:170px !important;
-
-max-width:100% !important;
+height:170px;
 
 }
 
+#album-bali select,
+#album-bali input,
 #album-bali button{
 
-width:auto !important;
+width:90%;
 
 }
 
