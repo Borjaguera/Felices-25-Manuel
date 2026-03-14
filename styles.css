@@ -1920,3 +1920,117 @@ transition:transform .3s;
 .galeria-bali img:hover{
 transform:scale(1.05);
 }
+/* =========================
+📸 ALBUM BALI BONITO
+========================= */
+
+#galeriaFotos{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+
+gap:18px;
+
+margin-top:30px;
+
+padding-bottom:40px;
+
+}
+
+/* =========================
+IMAGENES
+========================= */
+
+#galeriaFotos img{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+border-radius:16px;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+
+transition:transform 0.3s ease,
+box-shadow 0.3s ease;
+
+cursor:pointer;
+
+}
+
+/* hover */
+
+#galeriaFotos img:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.45);
+
+}
+
+/* =========================
+📱 MOVIL
+========================= */
+
+@media(max-width:600px){
+
+#galeriaFotos{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+#galeriaFotos img{
+
+height:180px;
+
+}
+
+}
+
+/* =========================
+BOTONES ALBUM
+========================= */
+
+#album-bali select,
+#album-bali input[type="file"],
+#album-bali button{
+
+background:white;
+
+border:none;
+
+padding:8px 14px;
+
+border-radius:20px;
+
+font-size:14px;
+
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
+
+}
+
+#album-bali button{
+
+background:#52b788;
+
+color:white;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:0.2s;
+
+}
+
+#album-bali button:hover{
+
+transform:scale(1.05);
+
+background:#40916c;
+
+}
