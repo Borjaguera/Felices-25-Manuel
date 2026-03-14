@@ -1991,7 +1991,6 @@ input.value = "";
 
 cargarFotos();
 }
-
 async function cargarFotos(){
 
 const galeria = document.getElementById("galeriaFotos");
@@ -2002,7 +2001,7 @@ galeria.innerHTML = "";
 
 const { data, error } = await supabase.storage
 .from("album")
-.list();
+.list("", { limit:100 });
 
 if(error){
 console.log(error);
