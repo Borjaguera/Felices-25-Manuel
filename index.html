@@ -130,6 +130,17 @@ referrerpolicy="no-referrer-when-downgrade">
 
 </section>
     
+<section id="album-bali">
+
+<h2>📸 Álbum del viaje</h2>
+
+<input type="file" id="fotoInput" accept="image/*">
+<button onclick="subirFoto()">Subir foto</button>
+
+<div id="galeriaFotos" class="galeria-bali"></div>
+
+</section>
+    
     <!-- MENÚ DE NAVEGACIÓN -->
    <nav>
 <ul>
@@ -1921,6 +1932,61 @@ async function cargarArchivos(){
 
 }
 
+async function subirFoto(){
+
+const input = document.getElementById("fotoInput");
+const foto = input.files[0];
+
+if(!foto){
+alert("Selecciona una foto");
+return;
+}
+
+const nombre = Date.now() + "_" + foto.name;
+
+const { error } = await supabase.storage
+.from("album")
+.upload(nombre, foto);
+
+if(error){
+alert("Error subiendo foto");
+console.log(error);
+return;
+}
+
+cargarFotos();
+}
+
+async function cargarFotos(){
+
+const galeria = document.getElementById("galeriaFotos");
+galeria.innerHTML="";
+
+const { data } = await supabase.storage
+.from("album")
+.list();
+
+data.forEach(foto=>{
+
+const { data:url } = supabase.storage
+.from("album")
+.getPublicUrl(foto.name);
+
+const img = document.createElement("img");
+
+img.src = url.publicUrl;
+
+img.onclick = ()=>{
+window.open(url.publicUrl,"_blank");
+};
+
+galeria.appendChild(img);
+
+});
+
+}
+
+cargarFotos();    
 </script>
 <script>
    async function climaBali(){
