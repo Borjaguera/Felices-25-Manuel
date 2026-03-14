@@ -1905,12 +1905,43 @@ async function cargarArchivos(){
 <script>
     async function climaBali(){
 
-const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=-8.65&longitude=115.22&current_weather=true");
+const res = await fetch(
+"https://api.open-meteo.com/v1/forecast?latitude=-8.65&longitude=115.22&current_weather=true"
+);
 
 const data = await res.json();
 
-document.getElementById("climaBali").innerHTML =
-data.current_weather.temperature + "°C 🌡";
+const code = data.current_weather.weathercode;
+
+const body = document.body;
+
+body.classList.remove(
+"fondo-sol",
+"fondo-lluvia",
+"fondo-nubes",
+"fondo-noche"
+);
+
+if(code === 0){
+body.classList.add("fondo-sol");
+}
+else if(code >= 51){
+body.classList.add("fondo-lluvia");
+}
+else if(code >= 1){
+body.classList.add("fondo-nubes");
+}
+
+/* noche en Bali */
+
+const hora = new Date().toLocaleTimeString("es-ES",{
+timeZone:"Asia/Makassar",
+hour:"numeric"
+});
+
+if(hora >= 19 || hora <= 5){
+body.classList.add("fondo-noche");
+}
 
 }
 
