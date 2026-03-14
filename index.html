@@ -1914,22 +1914,72 @@ const res = await fetch(
 const data = await res.json();
 
 const temp = data.current_weather.temperature;
+const code = data.current_weather.weathercode;
+
+/* EMOJI SEGÚN CLIMA */
+
+let icono = "🌤";
+
+if(code === 0){
+icono = "☀️";
+}
+else if(code >= 1 && code <= 3){
+icono = "☁️";
+}
+else if(code >= 51 && code <= 67){
+icono = "🌧";
+}
+else if(code >= 80){
+icono = "⛈";
+}
+
+/* mostrar clima */
 
 document.getElementById("climaBali").innerHTML =
-temp + "°C 🌡";
+icono + " " + temp + "°C";
+
+/* CAMBIAR FONDO */
+
+const body = document.body;
+
+body.classList.remove(
+"fondo-sol",
+"fondo-lluvia",
+"fondo-nubes",
+"fondo-noche"
+);
+
+if(code === 0){
+body.classList.add("fondo-sol");
+}
+else if(code >= 51){
+body.classList.add("fondo-lluvia");
+}
+else{
+body.classList.add("fondo-nubes");
+}
+
+/* NOCHE EN BALI */
+
+const hora = new Date().toLocaleTimeString("es-ES",{
+timeZone:"Asia/Makassar",
+hour:"numeric"
+});
+
+if(hora >= 19 || hora <= 5){
+body.classList.add("fondo-noche");
+}
 
 }catch(error){
 
 document.getElementById("climaBali").innerHTML =
-"No se pudo cargar el clima";
+"⚠️ Clima no disponible";
 
 console.log(error);
 
 }
 
 }
-
-climaBali();
 
 climaBali();
 
