@@ -2034,3 +2034,99 @@ transform:scale(1.05);
 background:#40916c;
 
 }
+/* =========================
+FONDO ALBUM
+========================= */
+
+#album-bali{
+
+background:rgba(255,255,255,0.15);
+
+backdrop-filter:blur(10px);
+
+padding:25px;
+
+border-radius:20px;
+
+margin:40px 15px;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+
+border:1px solid rgba(255,255,255,0.2);
+
+}
+
+/* =========================
+BOTONES ALBUM BONITOS
+========================= */
+
+#album-bali button{
+
+background:linear-gradient(135deg,#52b788,#2d6a4f);
+
+color:white;
+
+border:none;
+
+padding:10px 18px;
+
+border-radius:25px;
+
+font-weight:600;
+
+cursor:pointer;
+
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+
+transition:all 0.25s ease;
+
+}
+
+#album-bali button:hover{
+
+transform:translateY(-2px) scale(1.05);
+
+box-shadow:0 8px 20px rgba(0,0,0,0.35);
+
+}
+
+/* =========================
+SELECT Y FILE
+========================= */
+
+#album-bali select,
+#album-bali input[type="file"]{
+
+background:white;
+
+border:none;
+
+padding:8px 12px;
+
+border-radius:18px;
+
+box-shadow:0 3px 10px rgba(0,0,0,0.15);
+
+}
+
+/* =========================
+FOTOS MAS BONITAS
+========================= */
+
+#galeriaFotos img{
+
+border-radius:18px;
+
+box-shadow:0 12px 30px rgba(0,0,0,0.35);
+
+transition:all 0.3s ease;
+
+}
+
+#galeriaFotos img:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.45);
+
+}
