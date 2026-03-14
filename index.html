@@ -1764,7 +1764,7 @@ const supabaseUrl = "https://qvtxamqkssfqlwnloztl.supabase.co"
 
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2dHhhbXFrc3NmcWx3bmxvenRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MzAzMTQsImV4cCI6MjA4OTAwNjMxNH0.W9VR0TKiHKv62CqobwoJmTBD7racNAC79B6sj6MKguI"
     
-const supabase = supabase.createClient(supabaseUrl, supabaseKey)
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey)
 
 </script>
         
@@ -1957,7 +1957,7 @@ const dia = document.getElementById("diaFoto").value;
 
 const nombre = dia + "-" + Date.now() + "-" + foto.name;
 
-const { error } = await supabase.storage
+const { error } = await supabaseClient.storage
 .from("album")
 .upload(nombre, foto);
 
@@ -1967,10 +1967,10 @@ alert("❌ Error subiendo foto");
 return;
 }
 
-/* ✅ mensaje bonito */
-
 const mensaje = document.createElement("div");
+
 mensaje.innerHTML = "✅ Foto subida correctamente";
+
 mensaje.style.background = "#52b788";
 mensaje.style.color = "white";
 mensaje.style.padding = "10px";
@@ -1983,14 +1983,12 @@ setTimeout(()=>{
 mensaje.remove();
 },3000);
 
-/* limpiar input */
-
 input.value = "";
 
-/* actualizar galería */
-
 cargarFotos();
+
 }
+
 async function cargarFotos(){
 
 const galeria = document.getElementById("galeriaFotos");
@@ -1999,10 +1997,9 @@ if(!galeria) return;
 
 galeria.innerHTML = "";
 
-/* 👇 saber qué día está seleccionado */
 const diaSeleccionado = document.getElementById("diaFoto").value;
 
-const { data, error } = await supabase.storage
+const { data, error } = await supabaseClient.storage
 .from("album")
 .list();
 
@@ -2013,10 +2010,10 @@ return;
 
 data.forEach(file => {
 
-/* 👇 mostrar solo fotos del día */
 if(!file.name.startsWith(diaSeleccionado)) return;
 
-const url = supabaseUrl +
+const url =
+supabaseUrl +
 "/storage/v1/object/public/album/" +
 file.name;
 
