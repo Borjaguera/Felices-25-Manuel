@@ -2001,7 +2001,7 @@ galeria.innerHTML = "";
 
 const { data, error } = await supabase.storage
 .from("album")
-.list("", { limit:100 });
+.list();
 
 if(error){
 console.log(error);
@@ -2010,13 +2010,13 @@ return;
 
 data.forEach(file => {
 
-const { data: urlData } = supabase.storage
-.from("album")
-.getPublicUrl(file.name);
+const url = supabaseUrl +
+"/storage/v1/object/public/album/" +
+file.name;
 
 const img = document.createElement("img");
 
-img.src = urlData.publicUrl;
+img.src = url;
 img.loading = "lazy";
 
 img.style.width = "200px";
@@ -2024,7 +2024,7 @@ img.style.margin = "10px";
 img.style.borderRadius = "10px";
 
 img.onclick = ()=>{
-window.open(urlData.publicUrl,"_blank");
+window.open(url,"_blank");
 };
 
 galeria.appendChild(img);
@@ -2032,7 +2032,6 @@ galeria.appendChild(img);
 });
 
 }
-
 /* 👇 ESTA LÍNEA ES LA QUE TE FALTA */
 
 window.addEventListener("load", cargarFotos);
