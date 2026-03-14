@@ -2339,3 +2339,24 @@ border-radius:16px !important;
 }
 
 }
+/* FIX FUERTE ALBUM */
+
+section#album-bali{
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(10px);
+padding:20px;
+border-radius:20px;
+}
+
+section#album-bali button{
+background:linear-gradient(135deg,#52b788,#2d6a4f);
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:25px;
+}
+
+section#album-bali img{
+border-radius:16px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
