@@ -1904,30 +1904,18 @@ grid-template-columns:repeat(3,1fr);
 }
 
 }
-/* ☀️ Sol */
-.fondo-sol{
-background-image: url("imagenes-clima/bali-sol.jpg");
-background-size: cover;
-background-position: center;
+body.fondo-sol::before{
+background-image:url("imagenes-fondo/bali-sol.jpg");
 }
 
-/* 🌧 Lluvia */
-.fondo-lluvia{
-background-image: url("imagenes-clima/bali-lluvia.jpg");
-background-size: cover;
-background-position: center;
+body.fondo-lluvia::before{
+background-image:url("imagenes-fondo/bali-lluvia.jpg");
 }
 
-/* ☁️ Nublado */
-.fondo-nubes{
-background-image: url("imagenes-clima/bali-nublado.jpg");
-background-size: cover;
-background-position: center;
+body.fondo-nubes::before{
+background-image:url("imagenes-fondo/bali-nublado.jpg");
 }
 
-/* 🌙 Noche */
-.fondo-noche{
-background-image: url("imagenes-clima/bali-noche.jpg");
-background-size: cover;
-background-position: center;
+body.fondo-noche::before{
+background-image:url("imagenes-fondo/bali-noche.jpg");
 }
