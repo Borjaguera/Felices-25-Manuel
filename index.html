@@ -1757,19 +1757,17 @@ function apagarVelas(){
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script type="module">
 
-import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"
+<script>
 
 const supabaseUrl = "https://qvtxamqkssfqlwnloztl.supabase.co"
 
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2dHhhbXFrc3NmcWx3bmxvenRsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM0MzAzMTQsImV4cCI6MjA4OTAwNjMxNH0.W9VR0TKiHKv62CqobwoJmTBD7racNAC79B6sj6MKguI"
 
-const supabase = createClient(supabaseUrl, supabaseKey)
-
-window.supabase = supabase
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
 
 </script>
+        
         
 <script>
 
