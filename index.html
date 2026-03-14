@@ -1905,13 +1905,23 @@ async function cargarArchivos(){
 <script>
     async function climaBali(){
 
+try{
+
 const res = await fetch(
 "https://api.open-meteo.com/v1/forecast?latitude=-8.65&longitude=115.22&current_weather=true"
 );
 
 const data = await res.json();
 
+const temp = data.current_weather.temperature;
 const code = data.current_weather.weathercode;
+
+/* mostrar temperatura */
+
+document.getElementById("climaBali").innerHTML =
+temp + "°C 🌡";
+
+/* cambiar fondo */
 
 const body = document.body;
 
@@ -1941,6 +1951,15 @@ hour:"numeric"
 
 if(hora >= 19 || hora <= 5){
 body.classList.add("fondo-noche");
+}
+
+}catch(error){
+
+document.getElementById("climaBali").innerHTML =
+"No se pudo cargar el clima";
+
+console.log(error);
+
 }
 
 }
