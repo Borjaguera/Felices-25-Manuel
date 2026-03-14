@@ -2157,3 +2157,165 @@ height:170px;
 }
 
 }
+/* =====================================
+📸 FIX DEFINITIVO ALBUM (SOBRESCRIBE TODO)
+===================================== */
+
+/* CONTENEDOR ALBUM */
+
+#album-bali{
+
+width:95% !important;
+max-width:1100px !important;
+
+margin:30px auto !important;
+padding:25px !important;
+
+background:rgba(255,255,255,0.25) !important;
+backdrop-filter:blur(12px) !important;
+
+border-radius:22px !important;
+
+box-shadow:0 15px 40px rgba(0,0,0,0.35) !important;
+
+border:1px solid rgba(255,255,255,0.35) !important;
+
+text-align:center;
+
+}
+
+
+/* BOTONES */
+
+#album-bali button{
+
+background:linear-gradient(135deg,#52b788,#2d6a4f) !important;
+
+color:white !important;
+
+border:none !important;
+
+padding:12px 20px !important;
+
+border-radius:25px !important;
+
+font-weight:700 !important;
+
+cursor:pointer !important;
+
+box-shadow:0 8px 20px rgba(0,0,0,0.25) !important;
+
+transition:0.25s !important;
+
+}
+
+#album-bali button:hover{
+
+transform:scale(1.05) !important;
+
+box-shadow:0 10px 25px rgba(0,0,0,0.35) !important;
+
+}
+
+
+/* SELECT Y INPUT */
+
+#album-bali select,
+#album-bali input[type="file"]{
+
+background:white !important;
+
+border:none !important;
+
+padding:10px 14px !important;
+
+border-radius:20px !important;
+
+font-size:14px !important;
+
+box-shadow:0 5px 12px rgba(0,0,0,0.2) !important;
+
+}
+
+
+/* GALERIA */
+
+#galeriaFotos{
+
+display:grid !important;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr)) !important;
+
+gap:18px !important;
+
+margin-top:25px !important;
+
+justify-items:center !important;
+
+}
+
+
+/* FOTOS */
+
+#galeriaFotos img{
+
+width:100% !important;
+
+max-width:260px !important;
+
+height:200px !important;
+
+object-fit:cover !important;
+
+border-radius:18px !important;
+
+box-shadow:0 12px 30px rgba(0,0,0,0.35) !important;
+
+transition:0.3s !important;
+
+}
+
+#galeriaFotos img:hover{
+
+transform:scale(1.05) !important;
+
+}
+
+
+/* =====================================
+📱 MOVIL
+===================================== */
+
+@media (max-width:768px){
+
+#album-bali{
+
+width:94% !important;
+
+padding:20px !important;
+
+}
+
+#galeriaFotos{
+
+grid-template-columns:1fr 1fr !important;
+
+gap:12px !important;
+
+}
+
+#galeriaFotos img{
+
+height:170px !important;
+
+max-width:100% !important;
+
+}
+
+#album-bali button{
+
+width:auto !important;
+
+}
+
+}
