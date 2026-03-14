@@ -1999,6 +1999,9 @@ if(!galeria) return;
 
 galeria.innerHTML = "";
 
+/* 👇 saber qué día está seleccionado */
+const diaSeleccionado = document.getElementById("diaFoto").value;
+
 const { data, error } = await supabase.storage
 .from("album")
 .list();
@@ -2009,6 +2012,9 @@ return;
 }
 
 data.forEach(file => {
+
+/* 👇 mostrar solo fotos del día */
+if(!file.name.startsWith(diaSeleccionado)) return;
 
 const url = supabaseUrl +
 "/storage/v1/object/public/album/" +
@@ -2035,6 +2041,7 @@ galeria.appendChild(img);
 /* 👇 ESTA LÍNEA ES LA QUE TE FALTA */
 
 window.addEventListener("load", cargarFotos);
+document.getElementById("diaFoto").addEventListener("change", cargarFotos);
 </script>
 <script>
    async function climaBali(){
