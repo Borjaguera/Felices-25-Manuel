@@ -133,8 +133,25 @@ referrerpolicy="no-referrer-when-downgrade">
 <section id="album-bali">
 
 <h2>📸 Álbum del viaje</h2>
+    
+<select id="diaFoto">
+<option value="dia18">Día 18</option>
+<option value="dia19">Día 19</option>
+<option value="dia20">Día 20</option>
+<option value="dia21">Día 21</option>
+<option value="dia22">Día 22</option>
+<option value="dia23">Día 23</option>
+<option value="dia24">Día 24</option>
+<option value="dia25">Día 25</option>
+<option value="dia26">Día 26</option>
+<option value="dia27">Día 27</option>
+<option value="dia28">Día 28</option>
+</select>
 
 <input type="file" id="fotoInput" accept="image/*">
+<button onclick="subirFoto()">Subir foto</button>
+
+<div id="galeriaFotos"></div><input type="file" id="fotoInput" accept="image/*">
 <button onclick="subirFoto()">Subir foto</button>
 
 <div id="galeriaFotos" class="galeria-bali"></div>
@@ -1942,7 +1959,9 @@ alert("Selecciona una foto");
 return;
 }
 
-const nombre = Date.now() + "-" + Math.random() + "-" + foto.name;
+const dia = document.getElementById("diaFoto").value;
+
+const nombre = dia + "-" + Date.now() + "-" + foto.name;
 
 const { error } = await supabase.storage
 .from("album")
@@ -1989,17 +2008,41 @@ galeria.innerHTML = "";
 
 const { data, error } = await supabase.storage
 .from("album")
-.list("", {
-limit:100,
-sortBy:{ column:"created_at", order:"desc"}
-});
+.list("", { limit:100 });
 
 if(error){
 console.log(error);
 return;
 }
 
+/* agrupar por días */
+
+const dias = {};
+
 data.forEach(foto => {
+
+const partes = foto.name.split("-");
+const dia = partes[0];
+
+if(!dias[dia]) dias[dia] = [];
+
+dias[dia].push(foto);
+
+});
+
+/* mostrar */
+
+Object.keys(dias).sort().forEach(dia => {
+
+const titulo = document.createElement("h3");
+titulo.innerHTML = "📅 " + dia.replace("dia","Día ");
+
+galeria.appendChild(titulo);
+
+const grid = document.createElement("div");
+grid.classList.add("galeria-bali");
+
+dias[dia].forEach(foto => {
 
 const { data:url } = supabase.storage
 .from("album")
@@ -2014,11 +2057,15 @@ img.onclick = ()=>{
 window.open(url.publicUrl,"_blank");
 };
 
-galeria.appendChild(img);
+grid.appendChild(img);
 
 });
 
-}   
+galeria.appendChild(grid);
+
+});
+
+}
 </script>
 <script>
    async function climaBali(){
