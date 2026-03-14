@@ -1811,7 +1811,7 @@ async function subirArchivo(){
     return;
   }
 
-  const { error } = await supabase.storage
+  const { error } = await supabaseClient.storage
     .from("documentos")
     .upload(Date.now() + "_" + archivo.name, archivo);
 
@@ -1835,7 +1835,7 @@ async function cargarArchivos(){
   const contenedor = document.getElementById("listaArchivos");
   contenedor.innerHTML = "";
 
-  const { data, error } = await supabase.storage
+  const { data, error } = await supabaseClient.storage
     .from("documentos")
     .list();
 
@@ -1890,7 +1890,7 @@ async function cargarArchivos(){
 
     categorias[cat].forEach(file => {
 
-      const { data: urlData } = supabase.storage
+      const { data: urlData } = supabaseClient.storage
         .from("documentos")
         .getPublicUrl(file.name);
 
@@ -1918,7 +1918,7 @@ async function cargarArchivos(){
         const confirmar = confirm("¿Eliminar archivo?");
         if(!confirmar) return;
 
-        const { error } = await supabase.storage
+        const { error } = await supabaseClient.storage
           .from("documentos")
           .remove([file.name]);
 
