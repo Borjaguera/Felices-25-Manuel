@@ -2002,60 +2002,33 @@ galeria.innerHTML = "";
 
 const { data, error } = await supabase.storage
 .from("album")
-.list("", { limit:100 });
+.list();
 
 if(error){
 console.log(error);
 return;
 }
 
-/* agrupar por días */
+data.forEach(file => {
 
-const dias = {};
-
-data.forEach(foto => {
-
-const partes = foto.name.split("-");
-const dia = partes[0];
-
-if(!dias[dia]) dias[dia] = [];
-
-dias[dia].push(foto);
-
-});
-
-/* mostrar fotos */
-
-Object.keys(dias).sort().forEach(dia => {
-
-const titulo = document.createElement("h3");
-titulo.innerHTML = "📅 " + dia.replace("dia","Día ");
-
-galeria.appendChild(titulo);
-
-const grid = document.createElement("div");
-grid.classList.add("galeria-bali");
-
-dias[dia].forEach(foto => {
-
-const url = supabase.storage
+const { data: urlData } = supabase.storage
 .from("album")
-.getPublicUrl(foto.name).data.publicUrl;
+.getPublicUrl(file.name);
 
 const img = document.createElement("img");
 
-img.src = url;
+img.src = urlData.publicUrl;
 img.loading = "lazy";
 
+img.style.width = "200px";
+img.style.margin = "10px";
+img.style.borderRadius = "10px";
+
 img.onclick = ()=>{
-window.open(url,"_blank");
+window.open(urlData.publicUrl,"_blank");
 };
 
-grid.appendChild(img);
-
-});
-
-galeria.appendChild(grid);
+galeria.appendChild(img);
 
 });
 
