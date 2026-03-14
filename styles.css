@@ -2074,3 +2074,20 @@ padding:18px;
 }
 
 }
+/* =====================================
+📱 FONDO ALBUM EN MOVIL
+===================================== */
+
+@media (max-width:768px){
+
+#album-bali{
+
+background:rgba(255,255,255,0.25);
+
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,0.3);
+
+}
+
+}
