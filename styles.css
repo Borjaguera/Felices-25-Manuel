@@ -1905,7 +1905,7 @@ grid-template-columns:repeat(3,1fr);
 
 }
 body.fondo-sol::before{
-background-image:url("imagenes-fondo/bali-sol.jpg");
+background-image:url("imagenes-fondo/bali-sol.jpg.avif");
 }
 
 body.fondo-lluvia::before{
