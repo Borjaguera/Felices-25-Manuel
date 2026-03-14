@@ -1499,25 +1499,45 @@ window.addEventListener("load", async function(){
 
 });
 /* =====================================
-🎒 CHECKLIST GUARDADA
+🎒 CHECKLIST GUARDADA PRO
 ===================================== */
 
 const checks = document.querySelectorAll(".checkItem");
 
-// cargar estado guardado
-checks.forEach((check,index)=>{
+function guardarChecklist(){
 
-    const estado = localStorage.getItem("check-"+index);
+    const estado = [];
 
-    if(estado === "true"){
-        check.checked = true;
-    }
-
-    check.addEventListener("change",()=>{
-        localStorage.setItem("check-"+index, check.checked);
+    checks.forEach(c=>{
+        estado.push(c.checked);
     });
 
+    localStorage.setItem("checklistBali", JSON.stringify(estado));
+
+    actualizarProgreso();
+}
+
+function cargarChecklist(){
+
+    const guardado = localStorage.getItem("checklistBali");
+
+    if(!guardado) return;
+
+    const estado = JSON.parse(guardado);
+
+    checks.forEach((c,i)=>{
+        if(estado[i]){
+            c.checked = true;
+        }
+    });
+
+}
+
+checks.forEach(c=>{
+    c.addEventListener("change", guardarChecklist);
 });
+
+cargarChecklist();
     /* =====================================
 📊 ACTUALIZAR BARRA PROGRESO
 ===================================== */
