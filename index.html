@@ -1942,17 +1942,39 @@ alert("Selecciona una foto");
 return;
 }
 
-const nombre = Date.now() + "_" + foto.name;
+const nombre = Date.now() + "-" + Math.random() + "-" + foto.name;
 
 const { error } = await supabase.storage
 .from("album")
 .upload(nombre, foto);
 
 if(error){
-alert("Error subiendo foto");
 console.log(error);
+alert("❌ Error subiendo foto");
 return;
 }
+
+/* ✅ mensaje bonito */
+
+const mensaje = document.createElement("div");
+mensaje.innerHTML = "✅ Foto subida correctamente";
+mensaje.style.background = "#52b788";
+mensaje.style.color = "white";
+mensaje.style.padding = "10px";
+mensaje.style.marginTop = "10px";
+mensaje.style.borderRadius = "8px";
+
+document.getElementById("album-bali").prepend(mensaje);
+
+setTimeout(()=>{
+mensaje.remove();
+},3000);
+
+/* limpiar input */
+
+input.value = "";
+
+/* actualizar galería */
 
 cargarFotos();
 }
@@ -1960,13 +1982,24 @@ cargarFotos();
 async function cargarFotos(){
 
 const galeria = document.getElementById("galeriaFotos");
-galeria.innerHTML="";
 
-const { data } = await supabase.storage
+if(!galeria) return;
+
+galeria.innerHTML = "";
+
+const { data, error } = await supabase.storage
 .from("album")
-.list();
+.list("", {
+limit:100,
+sortBy:{ column:"created_at", order:"desc"}
+});
 
-data.forEach(foto=>{
+if(error){
+console.log(error);
+return;
+}
+
+data.forEach(foto => {
 
 const { data:url } = supabase.storage
 .from("album")
@@ -1975,6 +2008,7 @@ const { data:url } = supabase.storage
 const img = document.createElement("img");
 
 img.src = url.publicUrl;
+img.loading = "lazy";
 
 img.onclick = ()=>{
 window.open(url.publicUrl,"_blank");
@@ -1984,9 +2018,7 @@ galeria.appendChild(img);
 
 });
 
-}
-
-cargarFotos();    
+}   
 </script>
 <script>
    async function climaBali(){
