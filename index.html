@@ -2164,15 +2164,7 @@ if(selector){
 
 </body>
 <footer>
-    <p>🌿 Itinerario Animalista por Bali — Diseño de Borja 🐾</p>  
-    <p>👀 Visitas: <span id="contador2">0</span></p>
+    <p>🌿 Itinerario Animalista por Bali — Diseño de Borja 🐾</p>    
 
 </footer>
-    <script>
-fetch("https://api.countapi.xyz/hit/borja-bali/visitas")
-.then(res=>res.json())
-.then(data=>{
-document.getElementById("contador2").innerText=data.value;
-});
-</script>
 </html>
