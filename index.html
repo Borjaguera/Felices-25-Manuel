@@ -2150,9 +2150,12 @@ async function reaccionar(nombre, emoji, contador){
 
 const clave = "reaccion_" + nombre;
 const reaccionAnterior = localStorage.getItem(clave);
+
 if(reaccionAnterior === emoji){
 return;
-}/* si tenía otra reaccion antes → quitarla de la base de datos */
+}
+
+/* si tenía otra reaccion antes → quitarla de la base de datos */
 
 if(reaccionAnterior && reaccionAnterior !== emoji){
 
@@ -2171,34 +2174,6 @@ await supabaseClient
 .eq("id", data.id);
 
 }
-
-}
-
-/* quitar reaccion */
-
-if(reaccionAnterior === emoji){
-
-contador.innerText = Math.max(0, parseInt(contador.innerText) - 1);
-
-localStorage.removeItem(clave);
-
-let { data } = await supabaseClient
-.from("reacciones_fotos")
-.select("*")
-.eq("nombre_foto", nombre)
-.eq("reaccion", emoji)
-.single();
-
-if(data){
-
-await supabaseClient
-.from("reacciones_fotos")
-.update({ cantidad: Math.max(0, data.cantidad - 1) })
-.eq("id", data.id);
-
-}
-
-return;
 
 }
 
