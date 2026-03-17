@@ -2181,6 +2181,8 @@ await supabaseClient
 
 contador.innerText = parseInt(contador.innerText) + 1;
 
+/* añadir reaccion */
+
 localStorage.setItem(clave, emoji);
 
 let { data } = await supabaseClient
@@ -2208,6 +2210,10 @@ await supabaseClient
 .eq("id", data.id);
 
 }
+
+/* recargar contador real */
+
+await cargarReacciones(nombre, emoji, contador);
 
 }
 async function cargarReacciones(nombre, emoji, contador){
