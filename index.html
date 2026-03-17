@@ -2121,6 +2121,8 @@ btn.classList.add("btn-reaccion");
 const contador = document.createElement("span");
 contador.innerText = "0";
 
+cargarReacciones(file.name, emoji, contador);
+
 btn.onclick = () => reaccionar(file.name, emoji, contador);
 
 zonaReacciones.appendChild(btn);
@@ -2204,6 +2206,20 @@ await supabaseClient
 .update({ cantidad: data.cantidad + 1 })
 .eq("id", data.id);
 
+}
+
+}
+async function cargarReacciones(nombre, emoji, contador){
+
+let { data } = await supabaseClient
+.from("reacciones_fotos")
+.select("*")
+.eq("nombre_foto", nombre)
+.eq("reaccion", emoji)
+.single();
+
+if(data){
+contador.innerText = data.cantidad;
 }
 
 }
