@@ -2057,8 +2057,15 @@ contador.innerText = nuevosLikes;
 localStorage.setItem(clave, "true");
 
 }
+const reacciones = ["❤️","😍","😂","😮","😢","👍"];
 
+/* =========================
+CARGAR FOTOS
+========================= */
 
+async function cargarFotos(){
+
+const galeria = document.getElementById("galeriaFotos");
 /* =========================
 CARGAR FOTOS
 ========================= */
@@ -2106,19 +2113,28 @@ img.onclick = ()=>{
 window.open(url,"_blank");
 };
 
-const likeBtn = document.createElement("button");
-likeBtn.innerHTML = "❤️";
-likeBtn.classList.add("btn-like");
+card.appendChild(img);
+
+const zonaReacciones = document.createElement("div");
+zonaReacciones.classList.add("zona-reacciones");
+
+reacciones.forEach(emoji => {
+
+const btn = document.createElement("button");
+btn.innerText = emoji;
+btn.classList.add("btn-reaccion");
 
 const contador = document.createElement("span");
-contador.classList.add("contador-like");
 contador.innerText = "0";
 
-likeBtn.onclick = ()=> darLike(file.name, contador);
+btn.onclick = () => reaccionar(file.name, emoji, contador);
 
-card.appendChild(img);
-card.appendChild(likeBtn);
-card.appendChild(contador);
+zonaReacciones.appendChild(btn);
+zonaReacciones.appendChild(contador);
+
+});
+
+card.appendChild(zonaReacciones);
 
 galeria.appendChild(card);
 
@@ -2127,8 +2143,38 @@ cargarLikes(file.name, contador);
 });
 
 }
+async function reaccionar(nombre, emoji, contador){
 
+const clave = "reaccion_" + nombre;
+const reaccionAnterior = localStorage.getItem(clave);
 
+/* quitar reaccion si pulsa la misma */
+
+if(reaccionAnterior === emoji){
+
+contador.innerText = parseInt(contador.innerText) - 1;
+
+localStorage.removeItem(clave);
+
+return;
+
+}
+
+/* si tenía otra reaccion antes */
+
+if(reaccionAnterior){
+
+contador.innerText = parseInt(contador.innerText) - 1;
+
+}
+
+/* añadir nueva reaccion */
+
+contador.innerText = parseInt(contador.innerText) + 1;
+
+localStorage.setItem(clave, emoji);
+
+}
 /* 👇 ESTA LÍNEA ES LA QUE TE FALTA */
 
 window.addEventListener("load", cargarFotos);
