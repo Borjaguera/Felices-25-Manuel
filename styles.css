@@ -2485,3 +2485,37 @@ color:white;
 font-size:16px;
 cursor:pointer;
 }
+.zona-comentarios{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:10px;
+width:100%;
+}
+
+.zona-comentarios input{
+flex:1;
+padding:10px;
+font-size:14px;
+border-radius:20px;
+border:none;
+outline:none;
+background:white;
+}
+
+.zona-comentarios button{
+width:36px;
+height:36px;
+border:none;
+border-radius:50%;
+background:#4fb58a;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+.foto-card{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:200px;
+}
