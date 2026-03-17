@@ -2125,8 +2125,15 @@ cargarReacciones(file.name, emoji, contador);
 
 btn.onclick = () => reaccionar(file.name, emoji, contador);
 
-zonaReacciones.appendChild(btn);
-zonaReacciones.appendChild(contador);
+const reaccionDiv = document.createElement("div");
+reaccionDiv.classList.add("reaccion");
+
+contador.classList.add("contador-reaccion");
+
+reaccionDiv.appendChild(btn);
+reaccionDiv.appendChild(contador);
+
+zonaReacciones.appendChild(reaccionDiv);
 
 });
 
@@ -2143,8 +2150,9 @@ async function reaccionar(nombre, emoji, contador){
 
 const clave = "reaccion_" + nombre;
 const reaccionAnterior = localStorage.getItem(clave);
-
-/* si tenía otra reaccion antes → quitarla de la base de datos */
+if(reaccionAnterior === emoji){
+return;
+}/* si tenía otra reaccion antes → quitarla de la base de datos */
 
 if(reaccionAnterior && reaccionAnterior !== emoji){
 
