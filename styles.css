@@ -2464,3 +2464,32 @@ margin-right:8px;
 .btn-reaccion:active{
 transform:scale(1.4);
 }
+/* =========================
+REACCIONES FOTOS
+========================= */
+
+.zona-reacciones{
+display:flex;
+justify-content:space-between;
+align-items:center;
+width:200px; /* mismo ancho que la foto */
+margin-top:6px;
+}
+
+.btn-reaccion{
+border:none;
+background:transparent;
+font-size:18px;
+cursor:pointer;
+padding:2px;
+transition:transform 0.2s;
+}
+
+.btn-reaccion:hover{
+transform:scale(1.3);
+}
+
+.zona-reacciones span{
+font-size:12px;
+margin-left:2px;
+}
