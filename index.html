@@ -150,7 +150,7 @@ referrerpolicy="no-referrer-when-downgrade">
 <option value="dia28">Día 28</option>
 </select>
 
-<input type="file" id="fotoInput" accept="image/*">
+<input type="file" id="fotoInput" accept="image/*" multiple>
 <button onclick="subirFoto()">Subir foto</button>
 
 <div id="galeriaFotos"></div>
@@ -1948,14 +1948,18 @@ async function cargarArchivos(){
 async function subirFoto(){
 
 const input = document.getElementById("fotoInput");
-const foto = input.files[0];
+const fotos = input.files;
 
-if(!foto){
-alert("Selecciona una foto");
+if(fotos.length === 0){
+alert("Selecciona al menos una foto");
 return;
 }
 
 const dia = document.getElementById("diaFoto").value;
+
+for(let i = 0; i < fotos.length; i++){
+
+const foto = fotos[i];
 
 const nombre = dia + "-" + Date.now() + "-" + foto.name;
 
@@ -1965,25 +1969,12 @@ const { error } = await supabaseClient.storage
 
 if(error){
 console.log(error);
-alert("❌ Error subiendo foto");
-return;
+alert("❌ Error subiendo " + foto.name);
 }
 
-const mensaje = document.createElement("div");
+}
 
-mensaje.innerHTML = "✅ Foto subida correctamente";
-
-mensaje.style.background = "#52b788";
-mensaje.style.color = "white";
-mensaje.style.padding = "10px";
-mensaje.style.marginTop = "10px";
-mensaje.style.borderRadius = "8px";
-
-document.getElementById("album-bali").prepend(mensaje);
-
-setTimeout(()=>{
-mensaje.remove();
-},3000);
+alert("✅ Fotos subidas correctamente");
 
 input.value = "";
 
