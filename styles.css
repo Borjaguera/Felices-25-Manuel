@@ -2439,14 +2439,14 @@ COMENTARIOS
 .zona-comentarios{
 display:flex;
 align-items:center;
-gap:8px;
+gap:6px;
 margin-top:8px;
 width:100%;
 }
 
 .zona-comentarios input{
 flex:1;
-padding:10px 12px;
+padding:12px 14px;
 border-radius:20px;
 border:none;
 outline:none;
@@ -2455,13 +2455,13 @@ font-size:14px;
 }
 
 .zona-comentarios button{
-width:34px;
-height:34px;
+width:26px;
+height:26px;
 border:none;
 border-radius:50%;
 background:#4fb58a;
 color:white;
-font-size:16px;
+font-size:13px;
 cursor:pointer;
 display:flex;
 align-items:center;
@@ -2473,6 +2473,7 @@ font-size:12px;
 margin-top:6px;
 text-align:left;
 width:100%;
+color:#1f3d2b;
 }
 
 /* =========================
