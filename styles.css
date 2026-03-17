@@ -2361,3 +2361,72 @@ section#album-bali img{
 border-radius:16px;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
+/* =========================
+ALBUM FOTOS
+========================= */
+
+#galeriaFotos{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+margin-top:20px;
+}
+
+/* tarjeta foto */
+
+.foto-card{
+position:relative;
+width:200px;
+}
+
+/* imagen */
+
+.foto-card img{
+width:100%;
+border-radius:10px;
+cursor:pointer;
+transition:transform 0.3s;
+}
+
+.foto-card img:hover{
+transform:scale(1.03);
+}
+
+/* boton like */
+
+.btn-like{
+position:absolute;
+bottom:10px;
+left:10px;
+background:white;
+border:none;
+font-size:20px;
+padding:6px 10px;
+border-radius:20px;
+cursor:pointer;
+box-shadow:0 2px 8px rgba(0,0,0,0.3);
+transition:transform 0.2s;
+}
+
+.btn-like:hover{
+transform:scale(1.2);
+}
+
+/* contador likes */
+
+.contador-like{
+position:absolute;
+bottom:10px;
+left:55px;
+background:rgba(0,0,0,0.7);
+color:white;
+padding:4px 8px;
+border-radius:10px;
+font-size:14px;
+}
+
+/* animación corazón */
+
+.btn-like:active{
+transform:scale(1.4);
+}
