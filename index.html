@@ -1990,6 +1990,66 @@ cargarFotos();
 
 }
 
+
+/* =========================
+LIKES DE FOTOS
+========================= */
+
+async function cargarLikes(nombre, contador){
+
+const { data } = await supabaseClient
+.from("likes_fotos")
+.select("*")
+.eq("nombre_foto", nombre)
+.single();
+
+if(data){
+contador.innerText = data.likes;
+}else{
+contador.innerText = 0;
+}
+
+}
+
+async function darLike(nombre, contador){
+
+let { data } = await supabaseClient
+.from("likes_fotos")
+.select("*")
+.eq("nombre_foto", nombre)
+.single();
+
+if(!data){
+
+await supabaseClient
+.from("likes_fotos")
+.insert({
+nombre_foto: nombre,
+likes: 1
+});
+
+contador.innerText = 1;
+
+}else{
+
+const nuevosLikes = data.likes + 1;
+
+await supabaseClient
+.from("likes_fotos")
+.update({ likes: nuevosLikes })
+.eq("nombre_foto", nombre);
+
+contador.innerText = nuevosLikes;
+
+}
+
+}
+
+
+/* =========================
+CARGAR FOTOS
+========================= */
+
 async function cargarFotos(){
 
 const galeria = document.getElementById("galeriaFotos");
@@ -2018,8 +2078,10 @@ supabaseUrl +
 "/storage/v1/object/public/album/" +
 file.name;
 
-const img = document.createElement("img");
+const card = document.createElement("div");
+card.classList.add("foto-card");
 
+const img = document.createElement("img");
 img.src = url;
 img.loading = "lazy";
 
@@ -2031,14 +2093,34 @@ img.onclick = ()=>{
 window.open(url,"_blank");
 };
 
-galeria.appendChild(img);
+const likeBtn = document.createElement("button");
+likeBtn.innerHTML = "❤️";
+likeBtn.classList.add("btn-like");
+
+const contador = document.createElement("span");
+contador.classList.add("contador-like");
+contador.innerText = "0";
+
+likeBtn.onclick = ()=> darLike(file.name, contador);
+
+card.appendChild(img);
+card.appendChild(likeBtn);
+card.appendChild(contador);
+
+galeria.appendChild(card);
+
+cargarLikes(file.name, contador);
 
 });
 
 }
+
+
 /* 👇 ESTA LÍNEA ES LA QUE TE FALTA */
 
 window.addEventListener("load", cargarFotos);
+
+
 /* =====================================
 📸 CAMBIAR DÍA DEL ÁLBUM
 ===================================== */
