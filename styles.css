@@ -2399,15 +2399,7 @@ gap:8px;
 margin-top:6px;
 }
 
-.reaccion{
-display:flex;
-align-items:center;
-gap:3px;
-padding:4px 10px;
-border-radius:12px;
-background:#4fb58a; /* verde */
-box-shadow:none; /* QUITA LA SOMBRA */
-}
+
 
 .btn-reaccion{
 border:none;
