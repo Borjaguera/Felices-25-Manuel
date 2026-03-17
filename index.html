@@ -1989,12 +1989,7 @@ input.value = "";
 cargarFotos();
 
 }
-let usuario = localStorage.getItem("usuario");
 
-if(!usuario){
-usuario = prompt("¿Cómo te llamas?");
-localStorage.setItem("usuario", usuario);
-}
 /* =========================
 LIKES DE FOTOS
 ========================= */
@@ -2259,6 +2254,14 @@ contador.innerText = data.cantidad;
 window.addEventListener("load", cargarFotos);
 
 async function enviarComentario(nombreFoto, input){
+
+let usuario = localStorage.getItem("usuario");
+
+if(!usuario){
+usuario = prompt("¿Cómo te llamas?");
+if(!usuario) return;
+localStorage.setItem("usuario", usuario);
+}
 
 const texto = input.value;
 
