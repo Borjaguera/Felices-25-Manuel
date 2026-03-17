@@ -2434,3 +2434,29 @@ font-size:14px;
 }
 
 }
+.zona-comentarios{
+display:flex;
+gap:6px;
+margin-top:6px;
+}
+
+.zona-comentarios input{
+flex:1;
+padding:6px;
+border-radius:8px;
+border:none;
+}
+
+.zona-comentarios button{
+background:#4fb58a;
+border:none;
+border-radius:8px;
+padding:6px 10px;
+cursor:pointer;
+}
+
+.lista-comentarios{
+font-size:12px;
+margin-top:4px;
+text-align:left;
+}
