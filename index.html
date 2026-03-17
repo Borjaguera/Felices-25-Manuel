@@ -1989,8 +1989,12 @@ input.value = "";
 cargarFotos();
 
 }
+let usuario = localStorage.getItem("usuario");
 
-
+if(!usuario){
+usuario = prompt("¿Cómo te llamas?");
+localStorage.setItem("usuario", usuario);
+}
 /* =========================
 LIKES DE FOTOS
 ========================= */
@@ -2139,6 +2143,28 @@ zonaReacciones.appendChild(reaccionDiv);
 
 card.appendChild(zonaReacciones);
 
+const zonaComentarios = document.createElement("div");
+zonaComentarios.classList.add("zona-comentarios");
+
+const input = document.createElement("input");
+input.placeholder = "Escribe un comentario...";
+
+const btn = document.createElement("button");
+btn.innerText = "💬";
+
+btn.onclick = () => enviarComentario(file.name, input);
+
+zonaComentarios.appendChild(input);
+zonaComentarios.appendChild(btn);
+
+card.appendChild(zonaComentarios);
+
+const listaComentarios = document.createElement("div");
+listaComentarios.classList.add("lista-comentarios");
+
+card.appendChild(listaComentarios);
+
+cargarComentarios(file.name, listaComentarios);
 galeria.appendChild(card);
 
 
@@ -2232,8 +2258,46 @@ contador.innerText = data.cantidad;
 
 window.addEventListener("load", cargarFotos);
 
+async function enviarComentario(nombreFoto, input){
 
-/* =====================================
+const texto = input.value;
+
+if(!texto) return;
+
+await supabaseClient
+.from("comentarios_fotos")
+.insert({
+nombre_foto: nombreFoto,
+usuario: usuario,
+comentario: texto
+});
+
+input.value = "";
+
+cargarFotos();
+
+}
+
+async function cargarComentarios(nombreFoto, contenedor){
+
+const { data } = await supabaseClient
+.from("comentarios_fotos")
+.select("*")
+.eq("nombre_foto", nombreFoto)
+.order("fecha");
+
+contenedor.innerHTML = "";
+
+data.forEach(c => {
+
+const div = document.createElement("div");
+div.innerHTML = "<b>" + c.usuario + ":</b> " + c.comentario;
+
+contenedor.appendChild(div);
+
+});
+
+}/* =====================================
 📸 CAMBIAR DÍA DEL ÁLBUM
 ===================================== */
 
