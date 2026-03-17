@@ -2418,7 +2418,8 @@ padding:0;
 }
 
 .contador-reaccion{
-font-size:12px;
-margin-left:4px;
-color:#444;
+font-size:14px;
+font-weight:600;
+color:#1f3d2b; /* verde oscuro */
+margin-left:6px;
 }
