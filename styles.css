@@ -2392,49 +2392,20 @@ transition:transform 0.3s;
 transform:scale(1.03);
 }
 
-/* ===== REACCIONES COMPACTAS ===== */
-
-.zona-reacciones{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:4px;
-width:200px;
-}
-
-.reaccion{
-display:flex;
-align-items:center;
-gap:2px;
-font-size:14px;
-}
-
-.btn-reaccion{
-border:none;
-background:none;
-cursor:pointer;
-font-size:16px;
-padding:0;
-line-height:1;
-}
-
-.contador-reaccion{
-font-size:10px;
-color:#666;
-}
 .zona-reacciones{
 display:flex;
 justify-content:center;
-gap:20px;
+gap:8px;
 margin-top:6px;
-width:100%;
 }
 
 .reaccion{
 display:flex;
 align-items:center;
 gap:3px;
-font-size:14px;
+background:rgba(0,0,0,0.05);
+padding:3px 8px;
+border-radius:12px;
 }
 
 .btn-reaccion{
@@ -2446,6 +2417,6 @@ padding:0;
 }
 
 .contador-reaccion{
-font-size:11px;
-color:#777;
+font-size:12px;
+color:#444;
 }
