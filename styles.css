@@ -2442,6 +2442,7 @@ align-items:center;
 gap:6px;
 margin-top:8px;
 width:100%;
+background:none;   /* quitar fondo verde */
 }
 
 .zona-comentarios input{
@@ -2455,13 +2456,13 @@ font-size:14px;
 }
 
 .zona-comentarios button{
-width:26px;
-height:26px;
+width:28px;
+height:28px;
 border:none;
 border-radius:50%;
 background:#4fb58a;
 color:white;
-font-size:13px;
+font-size:14px;
 cursor:pointer;
 display:flex;
 align-items:center;
