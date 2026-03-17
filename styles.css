@@ -2403,9 +2403,10 @@ margin-top:6px;
 display:flex;
 align-items:center;
 gap:3px;
-background:rgba(0,0,0,0.05);
-padding:3px 8px;
+padding:4px 10px;
 border-radius:12px;
+background:#4fb58a; /* verde */
+box-shadow:none; /* QUITA LA SOMBRA */
 }
 
 .btn-reaccion{
@@ -2418,5 +2419,6 @@ padding:0;
 
 .contador-reaccion{
 font-size:12px;
+margin-left:4px;
 color:#444;
 }
