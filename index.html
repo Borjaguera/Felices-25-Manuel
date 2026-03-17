@@ -2146,18 +2146,20 @@ galeria.appendChild(card);
 });
 
 }
-async function reaccionar(nombre, emoji, contador){
+async function reaccionar(nombre, emoji){
 
 const clave = "reaccion_" + nombre;
 const reaccionAnterior = localStorage.getItem(clave);
+
+/* si pulsa el mismo emoji no hacer nada */
 
 if(reaccionAnterior === emoji){
 return;
 }
 
-/* si tenía otra reaccion antes → quitarla de la base de datos */
+/* quitar reaccion anterior */
 
-if(reaccionAnterior && reaccionAnterior !== emoji){
+if(reaccionAnterior){
 
 let { data } = await supabaseClient
 .from("reacciones_fotos")
@@ -2177,11 +2179,7 @@ await supabaseClient
 
 }
 
-/* añadir reaccion */
-
-contador.innerText = parseInt(contador.innerText) + 1;
-
-/* añadir reaccion */
+/* guardar nueva reaccion */
 
 localStorage.setItem(clave, emoji);
 
@@ -2211,9 +2209,9 @@ await supabaseClient
 
 }
 
-/* recargar contador real */
+/* recargar todos los contadores */
 
-await cargarReacciones(nombre, emoji, contador);
+cargarFotos();
 
 }
 async function cargarReacciones(nombre, emoji, contador){
