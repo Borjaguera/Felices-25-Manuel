@@ -2519,3 +2519,48 @@ flex-direction:column;
 align-items:center;
 width:200px;
 }
+.zona-comentarios{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:8px;
+width:100%;
+}
+
+.zona-comentarios input{
+flex:1;
+padding:10px 12px;
+border-radius:20px;
+border:none;
+outline:none;
+background:white;
+font-size:14px;
+}
+
+.zona-comentarios button{
+width:36px;
+height:36px;
+border:none;
+border-radius:50%;
+background:#4fb58a;
+color:white;
+font-size:16px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.foto-card{
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+max-width:200px;
+}
+@media (max-width:600px){
+
+.zona-comentarios input{
+font-size:16px;
+}
+
+}
